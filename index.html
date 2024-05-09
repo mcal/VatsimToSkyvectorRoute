@@ -31,7 +31,7 @@
                 
                 var fullRoute = aircraft.flight_plan.departure + " " + aircraft.flight_plan.route + " " + aircraft.flight_plan.arrival;
                 var encodedFullRoute = encodeURIComponent(fullRoute);
-                //window.location.replace("https://skyvector.com/?fpl=" + encodedFullRoute);
+                window.location.replace("https://skyvector.com/?fpl=" + encodedFullRoute);
               }
           });
         });
