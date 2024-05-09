@@ -14,7 +14,7 @@
     <script>
     $( document ).ready(function() {
         var urlParams = new URLSearchParams(window.location.search);
-        var aid = urlParams.get('aid'); 
+        var aid = urlParams.get('aid').toUpperCase(); 
         $("#aid").text(aid);
         
         $(document).ready(function () {
@@ -23,8 +23,8 @@
               url: 'https://data.vatsim.net/v3/vatsim-data.json',               
               success: function (data) { 
                   var onlineAircraft = data.pilots;
-                  var aircraft = JSON.parse(onlineAircraft).filter(function (entry) {
-                    return entry.callsign.toUpperCase() === aid.toUpperCase();
+                  var aircraft = onlineAircraft.filter(function(t) { 
+                    return t.callsign.toUpperCase() === aid.ToUpperCase(); 
                   });
                 $("#ac_route").text(aircraft.flight_plan.departure + " " + aircraft.flight_plan.route + " " + aircraft.flight_plan.arrival);
                 
