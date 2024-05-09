@@ -23,9 +23,10 @@
               url: 'https://data.vatsim.net/v3/vatsim-data.json',               
               success: function (data) { 
                   var onlineAircraft = data.pilots;
-                  var aircraft = onlineAircraft.filter(function(t) { 
+                  var filteredAircraft = onlineAircraft.filter(function(t) { 
                     return t.callsign.toUpperCase() === aid; 
                   });
+                var aircraft = filteredAircraft[0];
                 $("#ac_route").text(aircraft.flight_plan.departure + " " + aircraft.flight_plan.route + " " + aircraft.flight_plan.arrival);
                 
                 var fullRoute = aircraft.flight_plan.departure + " " + aircraft.flight_plan.route + " " + aircraft.flight_plan.arrival;
