@@ -23,10 +23,14 @@
               url: 'https://data.vatsim.net/v3/vatsim-data.json',               
               success: function (data) { 
                   var onlineAircraft = data.pilots;
-                  var aircraft = JSON.parse(currentData).filter(function (entry) {
+                  var aircraft = JSON.parse(onlineAircraft).filter(function (entry) {
                     return entry.callsign.toUpperCase() === aid.toUpperCase();
                   });
                 $("#ac_route").text(aircraft.flight_plan.departure + " " + aircraft.flight_plan.route + " " + aircraft.flight_plan.arrival);
+                
+                var fullRoute = aircraft.flight_plan.departure + " " + aircraft.flight_plan.route + " " + aircraft.flight_plan.arrival;
+                var encodedFullRoute = encodeURIComponent(fullRoute);
+                //window.location.replace("https://skyvector.com/?fpl=" + encodedFullRoute);
               }
           });
         });
