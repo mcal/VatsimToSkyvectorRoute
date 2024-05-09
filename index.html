@@ -24,7 +24,7 @@
               success: function (data) { 
                   var onlineAircraft = data.pilots;
                   var aircraft = onlineAircraft.filter(function(t) { 
-                    return t.callsign.toUpperCase() === aid.ToUpperCase(); 
+                    return t.callsign.toUpperCase() === aid; 
                   });
                 $("#ac_route").text(aircraft.flight_plan.departure + " " + aircraft.flight_plan.route + " " + aircraft.flight_plan.arrival);
                 
