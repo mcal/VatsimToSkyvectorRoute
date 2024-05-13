@@ -10,15 +10,15 @@
     <h1>Clearance for <span id="callsign"></span></h1>
     <div class="card">
       <div class="card-header">
-        Aircraft Info
+        Aircraft Info<span class="badge text-bg-warn" id="heavyWeight"></span>
       </div>
       <div class="card-body">
         <div class="list-group">
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
-              Manufacturer
+              Make
             </div>
-            <div class="d-flex justify-content-between" id="manufacturer">
+            <div class="d-flex justify-content-between" id="make">
               [Loading...]
             </div>
           </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="d-flex justify-content-between" id="model">
               [Loading...]
-            </div>
+            </div>            
           </div>
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
@@ -104,12 +104,15 @@
                     return a.acType.toUpperCase() === acTypeParam.toUpperCase(); 
                   });
           var aircraft = filteredAircraft[0];
-          $("#manufacturer").text(filteredAircraft.manufacturer);
-          $("#model").text(filteredAircraft.model);
+          $("#make").text(aircraft.make);
+          $("#model").text(aircraft.model);
+          if (aircraft.weight == "Heavy") {
+            $("#heavyWeight").text(aircraft.weight);
+          }
 
           
           var airportData;
-          Papa.parse("iata-icao.csv", {
+          Papa.parse("https://mcal.github.io/VatsimToSkyvectorRoute/iata-icao.csv", {
             header: true,
             dynamicTyping: true,
             complete: function(results) {
