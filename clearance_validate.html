@@ -233,7 +233,7 @@
             if (!departureAirport || !arrivalAirport) 
             {
                 if (!airportData) {
-                    Papa.parse("https://mcal.github.io/VatsimToSkyvectorRoute/iata-icao.csv", {
+                    Papa.parse("data/VatsimToSkyvectorRoute/iata-icao.csv", {
                         download: true,
                         header: true,            
                         dynamicTyping: true,
