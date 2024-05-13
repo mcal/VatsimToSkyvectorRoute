@@ -326,7 +326,26 @@
             else
             {
                 validateAltitude();
-            }        
+            }
+
+            //Try to find DEP in live data            
+            var route;
+            $.ajax({ 
+                type: 'GET', 
+                url: 'https://data.vatsim.net/v3/vatsim-data.json',               
+                success: function (data) { 
+                    var onlineAircraft = data.pilots;
+                    var filteredAircraft = onlineAircraft.filter(function(t) { 
+                        return t.callsign.toUpperCase() === aid; 
+                    });
+                    if (filteredAircraft && filteredAircraft.length > 0) {
+                        var aircraft = filteredAircraft[0];
+                        route = aircraft.flight_plan.route;
+
+                        //TODO:Validate KMEM DEPS for time of day / engine type
+                    }
+                }
+            });            
 
             function getAirports() {
                 departureAirport = airportData.filter(function(a) { 
