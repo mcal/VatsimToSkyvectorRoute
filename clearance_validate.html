@@ -227,9 +227,6 @@
                 aircraft = filteredAircraft[0];
                 store.set("acInfo" + acTypeParam, aircraft);
             }
-            else {
-                aircraft = JSON.parse(aircraft);
-            }          
             $("#make").text(aircraft.make);
             $("#model").text(aircraft.model);
             $("#engineType").text(aircraft.engineType);
