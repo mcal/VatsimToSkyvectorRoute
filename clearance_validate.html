@@ -378,7 +378,7 @@
                 {
                     $("#alerts").text("");                    
                 }                
-                var newAlert = $("<div />").addClass("alert alert-danger").role("alert").text(text);
+                var newAlert = $("<div />").addClass("alert alert-danger").attr("role", "alert").text(text);
                 $("#alerts").append(newAlert);
                 alertsCount++;   
             }
