@@ -218,7 +218,7 @@
           }
 
             var aircraft = localStorage.getItem("acInfo" + acTypeParam);
-            if (!aircraft) {
+            if (!aircraft || !aircraft.make || !aircraft.model || !aircraft.engineType || !aircraft.engineCount) {
                 var filteredAircraft = acJson.filter(function(a) { 
                     return a.acType.toUpperCase() === acTypeParam.toUpperCase(); 
                   });
@@ -268,7 +268,7 @@
                 arrivalAirport = airportData.filter(function(a) { 
                     return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
                 })[0];
-                $("#arAirportName").text(arrivalAirport.airport);
+                $("#arrAirportName").text(arrivalAirport.airport);
                 validateAltitude();
             }
 
