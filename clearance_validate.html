@@ -170,6 +170,8 @@
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/store2@2.14.3/dist/store2.min.js"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     
@@ -216,14 +218,17 @@
             brng = toDegrees(brng);
             return (brng + 360) % 360;
           }
-
-            var aircraft = localStorage.getItem("acInfo" + acTypeParam);
+          
+            var aircraft = store.get("acInfo" + acTypeParam);
             if (!aircraft || !aircraft.make || !aircraft.model || !aircraft.engineType || !aircraft.engineCount) {
                 var filteredAircraft = acJson.filter(function(a) { 
                     return a.acType.toUpperCase() === acTypeParam.toUpperCase(); 
                   });
                 aircraft = filteredAircraft[0];
-                localStorage["acInfo" + acTypeParam] = aircraft;
+                store.set("acInfo" + acTypeParam, aircraft);
+            }
+            else {
+                aircraft = JSON.parse(aircraft);
             }          
             $("#make").text(aircraft.make);
             $("#model").text(aircraft.model);
@@ -231,12 +236,13 @@
             $("#engineCount").text(aircraft.engineCount);
             if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}
           
-            var departureAirport = localStorage.getItem("airport" + depParam);
-            var arrivalAirport = localStorage.getItem("airport" + arrParam);
+            var departureAirport = store.get("airport" + depParam);
+            var arrivalAirport = store.get("airport" + arrParam);
             var airportData;
 
             if (!departureAirport || !arrivalAirport) 
             {
+                airportData = store.get("aiportData");
                 if (!airportData) {
                     Papa.parse("data/iata-icao.csv", {
                         download: true,
@@ -245,6 +251,7 @@
                         complete: function(results) {
                             console.log(results);
                             airportData = results.data;
+                            store.set("airportData", airportData)
                             getAirports();
                         }
                     });
@@ -264,11 +271,15 @@
                 departureAirport = airportData.filter(function(a) { 
                     return a.icao?.toUpperCase() === depParam.toUpperCase(); 
                 })[0];
+                store.get("airport" + depParam, departureAirport);                
                 $("#depAirportName").text(departureAirport.airport);
+
                 arrivalAirport = airportData.filter(function(a) { 
                     return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
                 })[0];
+                store.get("airport" + arrParam, arrivalAirport);
                 $("#arrAirportName").text(arrivalAirport.airport);
+                
                 validateAltitude();
             }
 
