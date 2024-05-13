@@ -121,11 +121,11 @@
               airportData = results.data;
 
               var departureAirport = airportData.filter(function(a) { 
-                    return a.icao.toUpperCase() === depParam.toUpperCase(); 
+                    return a.icao?.toUpperCase() === depParam.toUpperCase(); 
               })[0];
               $("#depAirportName").text(departureAirport.airport);
               var arrivalAirport = airportData.filter(function(a) { 
-                        return a.icao.toUpperCase() === arrParam.toUpperCase(); 
+                        return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
               })[0];
               $("#arAirportName").text(arrivalAirport.airport);
               var bearing = bearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);              
