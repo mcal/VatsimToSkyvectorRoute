@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Vatsim Route Validator</title>
+    
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">>Clearance for <span id="callsign"></span><span class="badge text-bg-danger rounded-pill" id="heavyWeight"></span></h1>
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-xl-6 col-md-12 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Alerts</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerts">
+                                                No alerts
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-check fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Annual) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Departure</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="depAirportName"></span></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-plane-departure fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Arrival</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <span id="arrAirportName"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-plane-arrival fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Aircraft</h6>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <span id="make" class="d-flex justify-content-between"></span>
+                                        <span id="model" class="d-flex justify-content-between"></span> 
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span id="engineType" class="d-flex justify-content-between"></span>
+                                        <span id="engineCountLabel" class="d-flex justify-content-between">
+                                            (<span id="engineCount" class="d-flex justify-content-between"></span>)
+                                        </span>                                         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Route</h6>
+                                </div>
+                                <div class="card-body">
+
+                                    <iframe id="gcMap">                                        
+                                    </iframe>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="data/aircraftInfo.js"></script>
+    <script>
+        $(document).ready(function () {
+
+          var alertsCount = 0;
+
+          var urlParams = new URLSearchParams(window.location.search);
+          var callsignParam = urlParams.get('callsign').toUpperCase(); 
+          var acTypeParam = urlParams.get('acType').toUpperCase(); 
+          var depParam = urlParams.get('dep').toUpperCase(); 
+          var arrParam = urlParams.get('arr').toUpperCase(); 
+          var filedAlt = urlParams.get('filedAlt').toUpperCase(); 
+          $("#callsign").text(callsignParam);
+
+            var gcMapUrl = "http://www.gcmap.com/map?P=" + depParam + "-" + arrParam + "&MS=wls&MR=60&MX=540x540&PM=*";
+            document.getElementById('gcMap').src = gcMapUrl;            
+
+          // Converts from degrees to radians.
+          function toRadians(degrees) {
+            return degrees * Math.PI / 180;
+          };
+          
+          // Converts from radians to degrees.
+          function toDegrees(radians) {
+            return radians * 180 / Math.PI;
+          }
+
+          function getBearing(startLat, startLng, destLat, destLng){
+            startLat = toRadians(startLat);
+            startLng = toRadians(startLng);
+            destLat = toRadians(destLat);
+            destLng = toRadians(destLng);
+
+            y = Math.sin(destLng - startLng) * Math.cos(destLat);
+            x = Math.cos(startLat) * Math.sin(destLat) -
+                  Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
+            brng = Math.atan2(y, x);
+            brng = toDegrees(brng);
+            return (brng + 360) % 360;
+          }
+
+            var aircraft = localStorage.getItem("acInfo" + acTypeParam);
+            if (!aircraft) {
+                var filteredAircraft = acJson.filter(function(a) { 
+                    return a.acType.toUpperCase() === acTypeParam.toUpperCase(); 
+                  });
+                aircraft = filteredAircraft[0];
+                localStorage["acInfo" + acTypeParam] = aircraft;
+            }          
+            $("#make").text(aircraft.make);
+            $("#model").text(aircraft.model);
+            if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}
+          
+            var departureAirport = localStorage.getItem("airport" + depParam);
+            var arrivalAirport = localStorage.getItem("airport" + arrParam);
+            var airportData;
+
+            if (!departureAirport || !arrivalAirport) 
+            {
+                if (!airportData) {
+                    Papa.parse("https://mcal.github.io/VatsimToSkyvectorRoute/iata-icao.csv", {
+                        download: true,
+                        header: true,            
+                        dynamicTyping: true,
+                        complete: function(results) {
+                            console.log(results);
+                            airportData = results.data;
+                            getAirports();
+                        }
+                    });
+                }
+                else
+                {
+                    getAirports();
+                }
+            }
+            else
+            {
+                validateAltitude();
+            }
+        
+
+            function getAirports() {
+                departureAirport = airportData.filter(function(a) { 
+                    return a.icao?.toUpperCase() === depParam.toUpperCase(); 
+                })[0];
+                $("#depAirportName").text(departureAirport.airport);
+                arrivalAirport = airportData.filter(function(a) { 
+                    return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
+                })[0];
+                $("#arAirportName").text(arrivalAirport.airport);
+                validateAltitude();
+            }
+
+            function validateAltitude() {
+                var bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);              
+                let filedAltNumber = filedAlt.match (/\d+/gi);
+                var filedAltThousand = filedAltNumber / 10;                
+                var isOdd = filedAltThousand % 2;
+                
+                if (bearing >= 180 && bearing <= 359) {
+                //Even - South West
+                if (((filedAltThousand != '43') && (filedAltThousand != '47') && (filedAltThousand != '51')) &&
+                isOdd)
+                addAlert("Invalid Flight Level - Need Even");
+                } 
+                else
+                {
+                //Odd - North East
+                if (((filedAltThousand == 43) && (filedAltThousand == 47) && (filedAltThousand == 51)) ||
+                !isOdd)
+                addAlert("Invalid Flight Level - Need Odd");
+                }
+            }
+
+            function addAlert(text)
+            {                
+                if (alertsCount = 0)
+                {
+                    $("#alerts").text("");                    
+                }                
+                var newAlert = $("div").class("alert alert-danger").role("alert").text(text);                    
+                $("#alerts").append(newAlert);
+                alertsCount++;   
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
