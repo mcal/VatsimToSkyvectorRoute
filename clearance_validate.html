@@ -331,13 +331,13 @@
                 departureAirport = airportData.filter(function(a) { 
                     return a.icao?.toUpperCase() === depParam.toUpperCase(); 
                 })[0];
-                store.get("airport" + depParam, departureAirport);                
+                store.set("airport" + depParam, departureAirport);                
                 $("#depAirportName").text(departureAirport.airport);
 
                 arrivalAirport = airportData.filter(function(a) { 
                     return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
                 })[0];
-                store.get("airport" + arrParam, arrivalAirport);
+                store.set("airport" + arrParam, arrivalAirport);
                 $("#arrAirportName").text(arrivalAirport.airport);
                 $("#clearanceArrival").text(arrivalAirport.airport);
                 
@@ -374,11 +374,11 @@
 
             function addAlert(text)
             {                
-                if (alertsCount = 0)
+                if (alertsCount == 0)
                 {
                     $("#alerts").text("");                    
                 }                
-                var newAlert = $("div").addClass("alert alert-danger").role("alert").text(text);
+                var newAlert = $("<div />").addClass("alert alert-danger").role("alert").text(text);
                 $("#alerts").append(newAlert);
                 alertsCount++;   
             }
