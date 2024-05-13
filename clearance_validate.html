@@ -131,9 +131,11 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Route</h6>
                                 </div>
                                 <div class="card-body">
-
-                                    <iframe id="gcMap">                                        
-                                    </iframe>
+                                    <div id="gcMapContainer">
+                                        <iframe id="gcMap">                                        
+                                        </iframe>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             
@@ -188,6 +190,7 @@
 
             var gcMapUrl = "http://www.gcmap.com/map?P=" + depParam + "-" + arrParam + "&MS=wls&MR=60&MX=540x540&PM=*";
             document.getElementById('gcMap').src = gcMapUrl;            
+            $("#gcMapContainer").append($("iframe").src(gcMapUrl));
 
           // Converts from degrees to radians.
           function toRadians(degrees) {
