@@ -329,23 +329,73 @@
             }
 
             //Try to find DEP in live data            
-            var route;
-            $.ajax({ 
-                type: 'GET', 
-                url: 'https://data.vatsim.net/v3/vatsim-data.json',               
-                success: function (data) { 
-                    var onlineAircraft = data.pilots;
-                    var filteredAircraft = onlineAircraft.filter(function(t) { 
-                        return t.callsign.toUpperCase() === aid; 
-                    });
-                    if (filteredAircraft && filteredAircraft.length > 0) {
-                        var aircraft = filteredAircraft[0];
-                        route = aircraft.flight_plan.route;
+            if ((depParam == "KMEM") || (depParam == "KBNA"))
+            {
+                var route;            
+                $.ajax({ 
+                    type: 'GET', 
+                    url: 'https://data.vatsim.net/v3/vatsim-data.json',               
+                    success: function (data) { 
+                        var onlineAircraft = data.pilots;
+                        var filteredAircraft = onlineAircraft.filter(function(t) { 
+                            return t.callsign.toUpperCase() === callsign.toUpperCase(); 
+                        });
+                        if (filteredAircraft && filteredAircraft.length > 0) {
+                            var aircraft = filteredAircraft[0];
+                            route = aircraft.flight_plan.route;
 
-                        //TODO:Validate KMEM DEPS for time of day / engine type
+                            //TODO:Validate KMEM DEPS for time of day / engine type
+                            const waypoints = route.split(' ');
+                            if (depParam == "KMEM") {
+
+                                var jetRoute = ((waypoints[0].startsWith('AZONE')) || 
+                                                (waypoints[0].startsWith('BBKNG')) || 
+                                                (waypoints[0].startsWith('CHLDR')) || 
+                                                (waypoints[0].startsWith('CRSON')) || 
+                                                (waypoints[0].startsWith('DUCKZ')) || 
+                                                (waypoints[0].startsWith('GOETZ')) || 
+                                                (waypoints[0].startsWith('JTEEE')) || 
+                                                (waypoints[0].startsWith('PIEPE')) || 
+                                                (waypoints[0].startsWith('SELPH')) ||
+                                                (waypoints[0].startsWith('ZUMIT')));
+
+                                var timeRestricted = ((waypoints[0].startsWith('AUTMN')) ||
+                                    (waypoints[0].startsWith('BINKY')) ||
+                                    (waypoints[0].startsWith('GENEH')) ||
+                                    (waypoints[0].startsWith('GMBUD')) ||
+                                    (waypoints[0].startsWith('GRRIZ')) ||
+                                    (waypoints[0].startsWith('HOTRD')) ||
+                                    (waypoints[0].startsWith('NIKEI')) ||
+                                    (waypoints[0].startsWith('OLEMS')));
+                                //The above time restricted routes are also JET routes
+                                jetRoute = jetRoute || timeRestricted;
+                                
+                                if (waypoints[0].startsWith('ELVIS'))
+                                {
+                                    timeRestricted = timeRestricted || (
+                                        (waypoints[1] == 'SFOUR') ||
+                                        (waypoints[1] == 'STREE') ||
+                                        (waypoints[1] == 'NFIVE') ||
+                                        (waypoints[1] == 'EFOUR') ||
+                                        (waypoints[1] == 'NRONE') ||
+                                        (waypoints[1] == 'WFIVE') ||
+                                        (waypoints[1] == 'WFOUR') ||
+                                        (waypoints[1] == 'SONEI'));                                        
+                                }
+
+                                if (jetRoute && (!aircraft.engineType.toUpperCase() == "JET")) { addAlert("INVALID SID - JETS ONLY"); }
+
+                                if (timeRestricted) {
+                                    date = new Date(0);
+                                    var centralHour = date.toLocaleString('en-US', {hour: '2-digit',   hour12: false, timeZone: 'America/Chicago' });                                    
+                                    if (centralHour >=2 && centralHour <= 6) { addAlert("INVALID SID - TIME RESTRICTED"); }
+                                }
+                            }
+                            
+                        }
                     }
-                }
-            });            
+                });
+            }
 
             function getAirports() {
                 departureAirport = airportData.filter(function(a) { 
