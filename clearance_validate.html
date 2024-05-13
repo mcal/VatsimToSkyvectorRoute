@@ -96,9 +96,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    
+                    </div>                  
 
                     <div class="row">
                         <div class="col-lg-6">
@@ -122,6 +120,27 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Phraseology</h6>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <span id="make" class="d-flex justify-content-between"></span>
+                                        <span id="model" class="d-flex justify-content-between"></span> 
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>Cleared to <strong><span id="clearanceArrival"></span></strong></div>
+                                        <div><strong>[SID DEP] Departure, [TRANS] transition, then as filed.</strong></div>>
+                                        <div>Climb and maintain <strong><span id="clearanceInitAlt"></span></strong>. <strong><span id="clearanceFiledAltitude"></span> 1-0 minutes after</strong></div>
+                                        <div>Departure Frequecy 125.80</div>
+                                        <div>Squawk <strong><span id="clearanceSquawk"></span></strong></div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="col-lg-6">
@@ -131,6 +150,10 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Route</h6>
                                 </div>
                                 <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Filed Altitude</span>
+                                        <span id="routeFiledAltitude"></span> 
+                                    </div>
                                     <div id="gcMapContainer">
                                         <iframe id="gcMap" width="100%" height="500">                                        
                                         </iframe>
@@ -188,8 +211,13 @@
           var depParam = urlParams.get('dep').toUpperCase(); 
           var arrParam = urlParams.get('arr').toUpperCase(); 
           var filedAlt = urlParams.get('filedAlt').toUpperCase(); 
+          var squawk = urlParams.get('squawk'); 
           $("#callsign").text(callsignParam);
           
+          $("#routeFiledAltitude").text(filedAlt);
+          $("#clearanceFiledAltitude").text(filedAlt);          
+          $("#clearanceSquawk").text(squawk);
+
             //var gcMapUrl = "http://www.gcmap.com/map?P=" + depParam + "-" + arrParam + "&MS=wls&MR=60&MX=540x540&PM=*";
             var gcMapUrl = "https://www.greatcirclemap.com/roadmap?label=icao&unit=mi&routes=" + depParam + "-" + arrParam;
             document.getElementById('gcMap').src = gcMapUrl;            
@@ -232,7 +260,43 @@
             $("#engineType").text(aircraft.engineType);
             $("#engineCount").text(aircraft.engineCount);
             if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}
-          
+
+            var initAltitude = 5000;
+            switch(depParam.toUpperCase()) {
+                case "KMEM":
+                    if (!aircraft.engineType.toUpperCase() == "JET") {
+                        initAltitude = 4000 
+
+                    } 
+                    else { 
+                        initAltitude = 5000;
+                    }
+                    break;
+                case "KBNA":
+                    initAltitude = 4000;
+                    break;
+                case "KLIT":
+                    initAltitude = 4000;
+                    break;                    
+                case "KJAN":
+                    initAltitude = 4000;
+                    break;                                  
+                case "KXNA":
+                    initAltitude = 5000;
+                    break;                                  
+                case "KHSV":
+                    initAltitude = 5000;
+                    break;
+                case "KXNA":
+                    initAltitude = 5000;
+                    break;                                                                    
+                default:                    
+                    initAltitude = 5000;
+            } 
+                      
+            $("#engineCount").text(aircraft.engineCount);
+
+
             var departureAirport = store.get("airport" + depParam);
             var arrivalAirport = store.get("airport" + arrParam);
             var airportData;
@@ -261,8 +325,7 @@
             else
             {
                 validateAltitude();
-            }
-        
+            }        
 
             function getAirports() {
                 departureAirport = airportData.filter(function(a) { 
@@ -276,6 +339,7 @@
                 })[0];
                 store.get("airport" + arrParam, arrivalAirport);
                 $("#arrAirportName").text(arrivalAirport.airport);
+                $("#clearanceArrival").text(arrivalAirport.airport);
                 
                 validateAltitude();
             }
