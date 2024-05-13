@@ -332,19 +332,20 @@
                     return a.icao?.toUpperCase() === depParam.toUpperCase(); 
                 })[0];
                 store.set("airport" + depParam, departureAirport);                
-                $("#depAirportName").text(departureAirport.airport);
-
+                
                 arrivalAirport = airportData.filter(function(a) { 
                     return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
                 })[0];
                 store.set("airport" + arrParam, arrivalAirport);
-                $("#arrAirportName").text(arrivalAirport.airport);
-                $("#clearanceArrival").text(arrivalAirport.airport);
-                
+                                
                 validateAltitude();
             }
 
             function validateAltitude() {
+                $("#depAirportName").text(departureAirport.airport);
+                $("#arrAirportName").text(arrivalAirport.airport);
+                $("#clearanceArrival").text(arrivalAirport.airport);
+                
                 var bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);              
                 let filedAltNumber = filedAlt.match (/\d+/gi);
                 var filedAltThousand = filedAltNumber / 10;                
@@ -366,9 +367,9 @@
 
                 if (alertsCount > 0) {                    
                     $("#alertBorder").removeClass("border-left-info");
-                    $("#alertBorder").removeClass("border-left-danger");
+                    $("#alertBorder").addClass("border-left-danger");
                     $("#alertHeader").removeClass("text-info");
-                    $("#alertHeader").removeClass("text-danger");
+                    $("#alertHeader").addClass("text-danger");
                 }
             }
 
