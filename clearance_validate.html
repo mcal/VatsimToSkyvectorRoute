@@ -133,7 +133,7 @@
                                     </div>
                                     <div>
                                         <div>Cleared to <strong><span id="clearanceArrival"></span></strong></div>
-                                        <div><strong>[SID DEP] Departure, [TRANS] transition, then as filed.</strong></div>
+                                        <div><strong><span id="sid_dep">[SID DEP]</span> Departure, <span id="useTransition"><span id="sid_trans">[TRANS]</span> transition</span>, then as filed.</strong></div>
                                         <div>Climb and maintain <strong><span id="clearanceInitAlt"></span></strong>. Expect <strong><span id="clearanceFiledAltitude"></span></strong> 1-0 minutes after</strong></div>
                                         <div>Departure Frequecy 125.80</div>
                                         <div>Squawk <strong><span id="clearanceSquawk"></span></strong></div>
@@ -338,7 +338,7 @@
                     success: function (data) { 
                         var onlineAircraft = data.pilots;
                         var filteredAircraft = onlineAircraft.filter(function(t) { 
-                            return t.callsign.toUpperCase() === callsign.toUpperCase(); 
+                            return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
                         });
                         if (filteredAircraft && filteredAircraft.length > 0) {
                             var aircraft = filteredAircraft[0];
@@ -347,7 +347,6 @@
                             //TODO:Validate KMEM DEPS for time of day / engine type
                             const waypoints = route.split(' ');
                             if (depParam == "KMEM") {
-
                                 var jetRoute = ((waypoints[0].startsWith('AZONE')) || 
                                                 (waypoints[0].startsWith('BBKNG')) || 
                                                 (waypoints[0].startsWith('CHLDR')) || 
@@ -369,7 +368,10 @@
                                     (waypoints[0].startsWith('OLEMS')));
                                 //The above time restricted routes are also JET routes
                                 jetRoute = jetRoute || timeRestricted;
-                                
+                
+                                $("#sid_dep").text(waypoints[0] ?? "");
+                                $("#sid_trans").text(waypoints[1] ?? "");
+
                                 if (waypoints[0].startsWith('ELVIS'))
                                 {
                                     timeRestricted = timeRestricted || (
