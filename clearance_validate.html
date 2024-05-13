@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="gcMapContainer">
-                                        <iframe id="gcMap" width="100%">                                        
+                                        <iframe id="gcMap" width="100%" height="500">                                        
                                         </iframe>
                                     </div>
                                     
@@ -191,7 +191,7 @@
           $("#callsign").text(callsignParam);
           
             //var gcMapUrl = "http://www.gcmap.com/map?P=" + depParam + "-" + arrParam + "&MS=wls&MR=60&MX=540x540&PM=*";
-            var gcMapUrl = "https://www.greatcirclemap.com/?label=icao&routes=" + depParam + "-" + arrParam+"&unit=mi"
+            var gcMapUrl = "https://www.greatcirclemap.com/roadmap?label=icao&unit=mi&routes=" + depParam + "-" + arrParam;
             document.getElementById('gcMap').src = gcMapUrl;            
             $("#gcMapContainer").append($("iframe").attr("src", gcMapUrl));
 
@@ -317,7 +317,7 @@
                 {
                     $("#alerts").text("");                    
                 }                
-                var newAlert = $("div").class("alert alert-danger").role("alert").text(text);                    
+                var newAlert = $("div").addClass("alert alert-danger").role("alert").text(text);
                 $("#alerts").append(newAlert);
                 alertsCount++;   
             }
