@@ -191,7 +191,7 @@
             //var gcMapUrl = "http://www.gcmap.com/map?P=" + depParam + "-" + arrParam + "&MS=wls&MR=60&MX=540x540&PM=*";
             var gcMapUrl = "https://www.greatcirclemap.com/?label=icao&routes=" + depParam + "-" + arrParam+"&unit=mi"
             document.getElementById('gcMap').src = gcMapUrl;            
-            //$("#gcMapContainer").append($("iframe").src(gcMapUrl));
+            $("#gcMapContainer").append($("iframe").attr("src", gcMapUrl));
 
           // Converts from degrees to radians.
           function toRadians(degrees) {
