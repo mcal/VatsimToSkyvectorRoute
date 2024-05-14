@@ -39,7 +39,7 @@
                         <h1 class="h3 mb-0 text-gray-800">Clearance for <span id="callsign"></span><span class="badge badge-danger rounded-pill" id="heavyWeight"></span></h1>
                     </div>
 
-                    <div class="row invisible" id="alertContainer">
+                    <div class="row d-none" id="alertContainer">
                         <div class="mb-4">
                             <div id="alertBorder" class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
@@ -470,7 +470,7 @@
                 }                
                 var newAlert = $("<div />").addClass("alert alert-danger").attr("role", "alert").text(text);
                 $("#alerts").append(newAlert);
-                $("#alertContainer").removeClass("invisible");
+                $("#alertContainer").removeClass("d-none");
                 alertsCount++;   
             }
         });
