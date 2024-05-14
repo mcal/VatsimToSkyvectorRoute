@@ -352,6 +352,9 @@
 
                             CheckJetTimeRestictedSid(waypoints);
                         }
+                        else {
+                            CheckJetTimeRestictedSid(routeParam.split(" "));    
+                        }
                     },
                     failure: function() {
                         CheckJetTimeRestictedSid(routeParam.split(" "));
