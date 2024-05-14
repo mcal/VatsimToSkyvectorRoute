@@ -73,6 +73,7 @@
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Departure</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="depAirportName"></span></div>
+                                                    <a id="depProcedures" class="text-info">Departure Procedures</a>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-plane-departure fa-2x text-gray-300"></i>
@@ -91,6 +92,7 @@
                                                         Arrival</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                         <span id="arrAirportName"></span>
+                                                        <a id="arrProcedures" class="text-info">Arrival Procedures</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -232,6 +234,12 @@
           var routeParam = urlParams.get('route').toUpperCase(); 
           var squawk = urlParams.get('squawk'); 
           
+          var depProceduresLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
+          var arrProceduresLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Arrivals&weatherSection=METAR&ATISSection=Real";
+          $("#depProcedures").attr("href", depProceduresLink);
+          $("#arrProcedures").attr("href", arrProceduresLink);
+
+
           var callsignInfo = store.get("callsign" + callsignParam.substring(0,3));
           if (!callsignInfo || !callsignInfo.telephony) {
             var filteredCallsigns = callsignJson.filter(function(a) { 
@@ -298,36 +306,26 @@
                     if (!aircraft.engineType.toUpperCase() == "JET") {
                         initAltitude = 4000 
 
-                    } 
+                    }
                     else { 
                         initAltitude = 5000;
                     }
                     break;
                 case "KBNA":
-                    initAltitude = 4000;
-                    break;
                 case "KLIT":
-                    initAltitude = 4000;
-                    break;                    
                 case "KJAN":
                     initAltitude = 4000;
-                    break;                                  
+                    break;
                 case "KXNA":
-                    initAltitude = 5000;
-                    break;                                  
                 case "KHSV":
                     initAltitude = 5000;
                     break;
-                case "KXNA":
-                    initAltitude = 5000;
-                    break;                                                                    
                 default:                    
                     initAltitude = 5000;
-            } 
-            
+            }
+
             $("#clearanceInitAlt").text(initAltitude);
             $("#engineCount").text(aircraft.engineCount);
-
 
             var departureAirport = store.get("airport" + depParam);
             var arrivalAirport = store.get("airport" + arrParam);
