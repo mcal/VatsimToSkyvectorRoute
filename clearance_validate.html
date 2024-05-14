@@ -115,7 +115,7 @@
                                     <div class="d-flex justify-content-between">
                                         <span id="engineType" class="d-flex justify-content-between"></span>
                                         <span id="engineCountLabel" class="d-flex justify-content-between">
-                                            Engine Count: (<span id="engineCount" class="d-flex justify-content-between"></span>)
+                                            Engine Count: <span id="engineCount" class="d-flex justify-content-between"></span>
                                         </span>                                         
                                     </div>
                                 </div>
@@ -351,12 +351,12 @@
                                 var timeRestrictedJetSids = ['BINKY','GENEH','GMBUD','GRRIZ','HOTRD','NIKEI','OLEMS']; //JET - Time Restricted
                                 var jetSids = ['BBKNG','CHLDR','CRSON','DUCKZ','GOETZ','JTEEE','PIEPE','SELPH','ZUMIT'].concat(timeRestrictedJetSids); //JET - All Day
                                 
-                                var jetRoute = jetSids.some(item => item == waypoints[0]);
+                                var jetRoute = jetSids.some(item => waypoints[0].startsWith(item));
                 
                                 $("#sid_dep").text(waypoints[0] ?? "");
                                 $("#sid_trans").text(waypoints[1] ?? "");
                                 
-                                var timeRestricted = (timeRestrictedJetSids.some(item => item == waypoints[0]) //If a time restricted jet sid
+                                var timeRestricted = (timeRestrictedJetSids.some(item => waypoints[0].startsWith(item)) //If a time restricted jet sid
                                         || waypoints.some(item => { //Or has one of the ELVIS4 waypoints
                                             ['SFOUR','STREE','NFIVE','EFOUR','NRONE','WFIVE','WFOUR','SONEI'].includes(item.toUpperCase());
                                         }));
