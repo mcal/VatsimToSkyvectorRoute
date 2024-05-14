@@ -347,45 +347,21 @@
                             //TODO:Validate KMEM DEPS for time of day / engine type
                             const waypoints = route.split(' ');
                             if (depParam == "KMEM") {
-                                var jetRoute = ((waypoints[0].startsWith('AZONE')) || 
-                                                (waypoints[0].startsWith('BBKNG')) || 
-                                                (waypoints[0].startsWith('CHLDR')) || 
-                                                (waypoints[0].startsWith('CRSON')) || 
-                                                (waypoints[0].startsWith('DUCKZ')) || 
-                                                (waypoints[0].startsWith('GOETZ')) || 
-                                                (waypoints[0].startsWith('JTEEE')) || 
-                                                (waypoints[0].startsWith('PIEPE')) || 
-                                                (waypoints[0].startsWith('SELPH')) ||
-                                                (waypoints[0].startsWith('ZUMIT')));
-
-                                var timeRestricted = ((waypoints[0].startsWith('AUTMN')) ||
-                                    (waypoints[0].startsWith('BINKY')) ||
-                                    (waypoints[0].startsWith('GENEH')) ||
-                                    (waypoints[0].startsWith('GMBUD')) ||
-                                    (waypoints[0].startsWith('GRRIZ')) ||
-                                    (waypoints[0].startsWith('HOTRD')) ||
-                                    (waypoints[0].startsWith('NIKEI')) ||
-                                    (waypoints[0].startsWith('OLEMS')));
-                                //The above time restricted routes are also JET routes
-                                jetRoute = jetRoute || timeRestricted;
+                                
+                                var timeRestrictedJetSids = ['BINKY','GENEH','GMBUD','GRRIZ','HOTRD','NIKEI','OLEMS']; //JET - Time Restricted
+                                var jetSids = ['BBKNG','CHLDR','CRSON','DUCKZ','GOETZ','JTEEE','PIEPE','SELPH','ZUMIT'].concat(timeRestrictedJetSids); //JET - All Day
+                                
+                                var jetRoute = jetSids.some(item => item == waypoints[0]);
                 
                                 $("#sid_dep").text(waypoints[0] ?? "");
                                 $("#sid_trans").text(waypoints[1] ?? "");
-
-                                if (waypoints[0].startsWith('ELVIS'))
-                                {
-                                    timeRestricted = timeRestricted || (
-                                        (waypoints[1] == 'SFOUR') ||
-                                        (waypoints[1] == 'STREE') ||
-                                        (waypoints[1] == 'NFIVE') ||
-                                        (waypoints[1] == 'EFOUR') ||
-                                        (waypoints[1] == 'NRONE') ||
-                                        (waypoints[1] == 'WFIVE') ||
-                                        (waypoints[1] == 'WFOUR') ||
-                                        (waypoints[1] == 'SONEI'));                                        
-                                }
-
-                                if (jetRoute && (!aircraft.engineType.toUpperCase() == "JET")) { addAlert("INVALID SID - JETS ONLY"); }
+                                
+                                var timeRestricted = (timeRestrictedJetSids.some(item => item == waypoints[0]) //If a time restricted jet sid
+                                        || waypoints.some(item => { //Or has one of the ELVIS4 waypoints
+                                            ['SFOUR','STREE','NFIVE','EFOUR','NRONE','WFIVE','WFOUR','SONEI'].includes(item.toUpperCase());
+                                        }));
+                                
+                                if (jetRoute && !(aircraft.engineType.toUpperCase() == "JET")) { addAlert("INVALID SID - JETS ONLY"); }
 
                                 if (timeRestricted) {
                                     date = new Date(0);
