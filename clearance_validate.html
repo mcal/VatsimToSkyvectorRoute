@@ -336,13 +336,13 @@
                     type: 'GET', 
                     url: 'https://data.vatsim.net/v3/vatsim-data.json',               
                     success: function (data) { 
-                        var onlineAircraft = data.pilots;
-                        var filteredAircraft = onlineAircraft.filter(function(t) { 
+                        var onlineFlights = data.pilots;
+                        var filteredFlight = onlineFlights.filter(function(t) { 
                             return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
                         });
-                        if (filteredAircraft && filteredAircraft.length > 0) {
-                            var aircraft = filteredAircraft[0];
-                            route = aircraft.flight_plan.route;
+                        if (filteredFlight && filteredFlight.length > 0) {
+                            var flight = filteredFlight[0];
+                            route = flight.flight_plan.route;
 
                             //TODO:Validate KMEM DEPS for time of day / engine type
                             const waypoints = route.split(' ');
@@ -418,8 +418,15 @@
                 $("#arrAirportName").text(arrivalAirport.airport);
                 $("#clearanceArrival").text(arrivalAirport.airport);
                 
-                var bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);              
-                let filedAltNumber = filedAlt.match (/\d+/gi);
+                var bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);
+                var filedAltNumber;
+                //TODO: Count the digits - if 4, divide by 1000 - if 3, by 100
+                if (filedAlt.startsWith("FL")) {
+                    let filedAltNumber = filedAlt.match (/\d+/gi);
+                }
+                else {
+                    filedAltNumber = filedAlt;
+                }
                 var filedAltThousand = filedAltNumber / 10;                
                 var isOdd = filedAltThousand % 2;
                 
