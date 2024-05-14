@@ -45,7 +45,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div id="alertHeader" class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            <div id="alertHeader" class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Alerts</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerts">
                                                 No alerts
@@ -60,88 +60,87 @@
                         </div>
                     </div>
 
-                    <div class="row">                        
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Departure</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="depAirportName"></span></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-plane-departure fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Arrival</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span id="arrAirportName"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-plane-arrival fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                  
-
                     <div class="row">
                         <div class="col-lg-6">
 
                             <div class="row">
-                                <!-- Basic Card Example -->                            
-                                <div class="card shadow mb-4">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Aircraft</h6>
-                                        </div>
+                                    <!-- Earnings (Annual) Card Example -->
+                                <div class="col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
                                         <div class="card-body">
-                                            
-                                            <div class="d-flex justify-content-between">
-                                                <span id="make" class="d-flex justify-content-between"></span>
-                                                <span id="model" class="d-flex justify-content-between"></span> 
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <span id="engineType" class="d-flex justify-content-between"></span>
-                                                <span id="engineCountLabel" class="d-flex justify-content-between">
-                                                    Engine Count: <span id="engineCount" class="d-flex justify-content-between"></span>
-                                                </span>                                         
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Departure</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="depAirportName"></span></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-plane-departure fa-2x text-gray-300"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Basic Card Example -->                            
-                                <div class="card shadow mb-4">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Route</h6>
-                                        </div>
-                                        <div class="card-body">                                        
-                                            <div class="d-flex justify-content-between">
-                                                <span>Filed Altitude</span>
-                                                <span id="routeFiledAltitude"></span> 
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <span>Filed Route</span>
-                                                <span class="text-info" id="routeFiled"></span> 
+                                
+                                <div class="col-md-6 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                        Arrival</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <span id="arrAirportName"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-plane-arrival fa-2x text-gray-300"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Basic Card Example -->                            
+                                <div class="card shadow col-md-6  mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Aircraft</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        
+                                        <div class="d-flex justify-content-between">
+                                            <span id="make" class="d-flex justify-content-between"></span>
+                                            <span id="model" class="d-flex justify-content-between"></span> 
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span id="engineType" class="d-flex justify-content-between"></span>
+                                            <span id="engineCountLabel" class="d-flex justify-content-between">
+                                                Engine Count: <span id="engineCount" class="d-flex justify-content-between"></span>
+                                            </span>                                         
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="card shadow col-md-6  mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Route</h6>
+                                    </div>
+                                    <div class="card-body">                                        
+                                        <div class="d-flex justify-content-between">
+                                            <span>Filed Altitude</span>
+                                            <span id="routeFiledAltitude"></span> 
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Filed Route</span>
+                                            <span class="text-info" id="routeFiled"></span> 
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
                             </div>
 
                             <div class="card shadow mb-4">
