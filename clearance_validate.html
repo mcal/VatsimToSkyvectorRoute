@@ -357,9 +357,9 @@
 
             //Try to find DEP in live data            
             var route;
-            var lastDataUpdate = new Date(store.get("lastDataUpdate"));
+            var lastDataUpdate = store.get("lastDataUpdate");
             const dateDifferenceInSeconds = (dateInitial, dateFinal) => (dateFinal - dateInitial) / 1_000;
-            if (!lastDataUpdate || dateDifferenceInSeconds(lastDataUpdate, new Date(), 's') > 15) {
+            if (!lastDataUpdate || dateDifferenceInSeconds(new Date(lastDataUpdate), new Date(), 's') > 15) {
                 $.ajax({ 
                         type: 'GET', 
                         url: 'https://data.vatsim.net/v3/vatsim-data.json',               
