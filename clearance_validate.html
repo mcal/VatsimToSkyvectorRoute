@@ -364,7 +364,7 @@
                         type: 'GET', 
                         url: 'https://data.vatsim.net/v3/vatsim-data.json',               
                         success: function (data) { 
-                            store.set("lastDataUpdate", data.general.update_timestamp);
+                            store.set("lastDataUpdate", new Date().toISOString());
                             store.set("lastData", data);
 
                             getFlight(data);
