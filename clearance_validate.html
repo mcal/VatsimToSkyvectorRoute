@@ -356,38 +356,51 @@
             }
 
             //Try to find DEP in live data            
-            if ((depParam == "KMEM") || (depParam == "KBNA"))
-            {
-                var route;            
+            var route;
+            var lastDataUpdate = new Date(store.get("lastDataUpdate"));
+            const dateDifferenceInSeconds = (dateInitial, dateFinal) => (dateFinal - dateInitial) / 1_000;
+            if (!lastDataUpdate || dateDifferenceInSeconds(lastDataUpdate, new Date(), 's') > 15) {
                 $.ajax({ 
-                    type: 'GET', 
-                    url: 'https://data.vatsim.net/v3/vatsim-data.json',               
-                    success: function (data) { 
-                        var onlineFlights = data.pilots;
-                        var filteredFlight = onlineFlights.filter(function(t) { 
-                            return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
-                        });
-                        if (filteredFlight && filteredFlight.length > 0) {
-                            var flight = filteredFlight[0];
-                            route = flight.flight_plan.route;
+                        type: 'GET', 
+                        url: 'https://data.vatsim.net/v3/vatsim-data.json',               
+                        success: function (data) { 
+                            store.set("lastDataUpdate", data.general.update_timestamp);
+                            store.set("lastData", data);
 
-                            //TODO:Validate KMEM DEPS for time of day / engine type
-                            $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
-
-                            const waypoints = route.split(' ');
-                            $("#sid_dep").text(waypoints[0] ?? "");
-                            $("#sid_trans").text(waypoints[1] ?? "Unknown");
-
-                            CheckJetTimeRestictedSid(waypoints);
+                            getFlight(data);
+                        },
+                        failure: function() {
+                            CheckJetTimeRestictedSid(routeParam.split(" "));
                         }
-                        else {
-                            CheckJetTimeRestictedSid(routeParam.split(" "));    
-                        }
-                    },
-                    failure: function() {
-                        CheckJetTimeRestictedSid(routeParam.split(" "));
-                    }
                 });
+            }
+            else
+            {
+                var lastData = store.get("lastData");
+                getFlight(lastData);
+            }
+
+            function getFlight(data)
+            {
+                var onlineFlights = data.pilots;
+                var filteredFlight = onlineFlights.filter(function(t) { 
+                    return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
+                });
+                if (filteredFlight && filteredFlight.length > 0) {
+                    var flight = filteredFlight[0];
+                    route = flight.flight_plan.route;
+                    
+                    $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
+
+                    const waypoints = route.split(' ');
+                    $("#sid_dep").text(waypoints[0] ?? "");
+                    $("#sid_trans").text(waypoints[1] ?? "Unknown");
+
+                    CheckJetTimeRestictedSid(waypoints);
+                }
+                else {
+                    CheckJetTimeRestictedSid(routeParam.split(" "));    
+                }
             }
 
             function CheckJetTimeRestictedSid(waypoints) {
