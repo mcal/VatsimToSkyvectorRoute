@@ -382,7 +382,7 @@
                     if (timeRestricted) {
                         date = new Date(0);
                         var centralHour = date.toLocaleString('en-US', {hour: '2-digit',   hour12: false, timeZone: 'America/Chicago' });                                    
-                        if (centralHour >=2 && centralHour <= 6) { addAlert("INVALID SID - TIME RESTRICTED"); }
+                        if (centralHour <2 || centralHour > 6) { addAlert("INVALID SID - TIME RESTRICTED"); }
                     }
                 }
 
