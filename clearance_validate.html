@@ -216,7 +216,8 @@
     <script src="js/sb-admin-2.min.js"></script>
     
     <script src="papaparse.min.js"></script>
-        <script src="data/aircraftInfo.js"></script>
+    <script src="data/aircraftInfo.js"></script>
+    <script src="data/callsignInfo.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -230,7 +231,18 @@
           var filedAlt = urlParams.get('filedAlt').toUpperCase(); 
           var routeParam = urlParams.get('route').toUpperCase(); 
           var squawk = urlParams.get('squawk'); 
-          $("#callsign").text(callsignParam);
+          
+          var callsignInfo = store.get("callsign" + callsignParam.substring(0,3));
+          if (!callsignInfo || !callsignInfo.telephony) {
+            var filteredCallsigns = callsignJson.filter(function(a) { 
+                return a.code.toUpperCase() === callsignParam.substring(0,3).toUpperCase(); 
+                });
+                callsignInfo = filteredCallsigns[0];
+            store.set("callsign" + callsignParam.substring(0,3), callsignInfo);
+          }
+          $("#callsign").text(callsignParam + " (" + callsignInfo?.telephony + ")");
+
+
           $("#routeFiled").text(routeParam);
           
           $("#routeFiledAltitude").text(filedAlt);
