@@ -396,14 +396,14 @@
                 
                 var bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);
                 var filedAltNumber;
-                //TODO: Count the digits - if 4, divide by 1000 - if 3, by 100
+                
                 if (filedAlt.startsWith("FL")) {
-                    let filedAltNumber = filedAlt.match (/\d+/gi);
+                    let filedAltNumber = filedAlt.match(/\d+/gi) * 100;
                 }
                 else {
                     filedAltNumber = filedAlt;
                 }
-                var filedAltThousand = filedAltNumber / 10;                
+                var filedAltThousand = filedAltNumber / 100;
                 var isOdd = filedAltThousand % 2;
                 
                 if (bearing >= 180 && bearing <= 359) {
