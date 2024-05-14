@@ -398,12 +398,12 @@
                 var filedAltNumber;
                 
                 if (filedAlt.startsWith("FL")) {
-                    let filedAltNumber = filedAlt.match(/\d+/gi) * 100;
+                    filedAltNumber = filedAlt.match(/\d+/gi) * 100;
                 }
                 else {
                     filedAltNumber = filedAlt;
                 }
-                var filedAltThousand = filedAltNumber / 100;
+                var filedAltThousand = filedAltNumber / 1000;
                 var isOdd = filedAltThousand % 2;
                 
                 if (bearing >= 180 && bearing <= 359) {
