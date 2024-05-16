@@ -142,7 +142,7 @@
                                 </div>
                             </div>
 
-                            <div class="card shadow mb-4 d-none" id="initialFixContainer">
+                            <div class="card shadow mb-4 d-none" id="initFixContainer">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Initial Fix</h6>
                                 </div>
@@ -467,8 +467,7 @@
                     */
                 }
 
-                var initFix = store.get("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0]);
-                var initFixForSid;
+                var initFixForSid = store.get("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0]);
                 if (!initFix || !initFix.initialWaypoints) {
                     
                     initFixForSid = initFixJson
