@@ -135,8 +135,9 @@
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <span>Route</span>
-                                                <span class="text-warning" id="routeFiled"></span> 
+                                                <div class="text-warning" id="routeFiled"></div>
                                             </div>
+                                            <div><a id="routeAnalyzerLink" class="text-info">Route Analyzer</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -246,8 +247,10 @@
           
           var depProceduresLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
           var arrProceduresLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Arrivals&weatherSection=METAR&ATISSection=Real";
+          
           $("#depProcedures").attr("href", depProceduresLink);
           $("#arrProcedures").attr("href", arrProceduresLink);
+          $("#routeAnalyzerLink").attr("href", "https://www.flightaware.com/analysis/route.rvt?origin=" + depParam + "&destination=" + arrParam);
 
 
           var callsignInfo = store.get("callsign" + callsignParam.substring(0,3));
@@ -506,14 +509,14 @@
                 //Even - South West
                 if (((filedAltThousand != '43') && (filedAltThousand != '47') && (filedAltThousand != '51')) &&
                 isOdd)
-                addAlert("Invalid Flight Level - Need Even");
+                addAlert("Invalid Flight Level - Need Even (" + bearing +")");
                 } 
                 else
                 {
                 //Odd - North East
                 if (((filedAltThousand == 43) && (filedAltThousand == 47) && (filedAltThousand == 51)) ||
                 !isOdd)
-                addAlert("Invalid Flight Level - Need Odd");
+                addAlert("Invalid Flight Level - Need Odd (" + bearing +")");
                 }
 
                 if (alertsCount > 0) {                    
