@@ -509,14 +509,14 @@
                 //Even - South West
                 if (((filedAltThousand != '43') && (filedAltThousand != '47') && (filedAltThousand != '51')) &&
                 isOdd)
-                addAlert("Invalid Flight Level - Need Even (" + bearing +")");
+                addAlert("Invalid Flight Level - Need Even (" + bearing.toFixed(1) +")");
                 } 
                 else
                 {
                 //Odd - North East
                 if (((filedAltThousand == 43) && (filedAltThousand == 47) && (filedAltThousand == 51)) ||
                 !isOdd)
-                addAlert("Invalid Flight Level - Need Odd (" + bearing +")");
+                addAlert("Invalid Flight Level - Need Odd (" + bearing.toFixed(1) +")");
                 }
 
                 if (alertsCount > 0) {                    
