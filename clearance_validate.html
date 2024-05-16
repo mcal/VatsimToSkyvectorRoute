@@ -142,6 +142,17 @@
                                 </div>
                             </div>
 
+                            <div class="card shadow mb-4 d-none" id="initialFixContainer">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Initial Fix</h6>
+                                </div>
+                                <div class="card-body">                                                                        
+                                    <div id="initFixContent">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Phraseology</h6>
@@ -218,6 +229,7 @@
     <script src="papaparse.min.js"></script>
     <script src="data/aircraftInfo.js"></script>
     <script src="data/callsignInfo.js"></script>
+    <script src="data/zme.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -408,7 +420,7 @@
                 $("#sid_trans").text(waypoints[1] ?? "Unknown");
 
                 if (depParam == "KMEM") {                                
-                    var timeRestrictedJetSids = ['BINKY','GENEH','GMBUD','GRRIZ','HOTRD','NIKEI','OLEMS']; //JET - Time Restricted
+                    var timeRestrictedJetSids = ['AUTMN', 'BINKY','GENEH','GMBUD','GRRIZ','HOTRD','NIKEI','OLEMS']; //JET - Time Restricted
                     var jetSids = ['BBKNG','CHLDR','CRSON','DUCKZ','GOETZ','JTEEE','PIEPE','SELPH','ZUMIT'].concat(timeRestrictedJetSids); //JET - All Day
                     
                     var jetRoute = jetSids.some(item => waypoints[0].startsWith(item));
@@ -425,6 +437,49 @@
                         var centralHour = date.toLocaleString('en-US', {hour: '2-digit',   hour12: false, timeZone: 'America/Chicago' });                                    
                         if (centralHour <2 || centralHour > 6) { addAlert("INVALID SID - TIME RESTRICTED"); }
                     }
+                    
+                    var initFix = store.get("initFix" + waypoints[0].toUpperCase());
+                    if (!initFix || !initFix.initialWaypoints) {
+
+                        var initFixForSid = initFixJson
+                            .filter(airportRecord => airportRecord.airport == $depParam)[0]
+                            .Departures.filter(({ dep }) => dep.dp.toUpperCase() == waypoints[0].toUpperCase());
+
+
+                        
+                        store.set("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0], initFixForSid);
+                    }
+
+                    var memInitFixTable = $("<table />").addClass("table table-striped-columns table-bordered");
+                    memInitFixTable.append()
+                    $("#initFixContent").append(memInitFixTable);
+                    $("#initFixContainer").removeClass("d-none");
+                    /*
+                    <table class="table table-striped-columns table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">RNAV DP</th>
+                                <th scope="col">TRANS</th>
+                                <th scope="col">36L</th>
+                                <th scope="col">36C/R</th>
+                                <th scope="col">18L/C</th>
+                                <th scope="col">18R</th>
+                                <th scope="col">VECTOR TRANSITION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="initFixDp"></td>
+                                <td id="initFixTrans">TRANS</td>
+                                <td id="initFix36L">36L</td>
+                                <td id="initFix36CR">36C/R</td>
+                                <td id="initFix18LC">18L/C</td>
+                                <td id="initFix18R">18R</td>
+                                <td id="initFixVector">VECTOR TRANSITION</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    */
                 }
 
             }
