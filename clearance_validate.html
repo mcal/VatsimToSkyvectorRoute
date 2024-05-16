@@ -487,11 +487,12 @@
                     var tBody = $("<tbody />").append("<tr />");
                     
                     $.each(initFixForSid.initialWaypoints, function(i) {                            
-                        tHead.append($("<th scope='col' />")).html(initFixForSid.initialWaypoints[i].runway)
-                        tBody.append($("<td />")).html(initFixForSid.initialWaypoints[i].waypoint)
+                        tHead.firstChild.append($("<th scope='col' />")).html(initFixForSid.initialWaypoints[i].runway)
+                        tBody.firstChild.append($("<td />")).html(initFixForSid.initialWaypoints[i].waypoint)
                     });
 
-                    memInitFixTable.append(tHead).append(tBody);
+                    memInitFixTable.append(tHead);
+                    memInitFixTable.append(tBody);
 
                     $("#initFixContent").append(memInitFixTable);
                     $("#initFixContainer").removeClass("d-none");
