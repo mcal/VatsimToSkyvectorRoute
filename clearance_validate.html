@@ -439,21 +439,35 @@
                     }
                     
                     var initFix = store.get("initFix" + waypoints[0].toUpperCase());
+                    var initFixForSid;
                     if (!initFix || !initFix.initialWaypoints) {
-
-                        var initFixForSid = initFixJson
-                            .filter(airportRecord => airportRecord.airport == $depParam)[0]
-                            .Departures.filter(({ dep }) => dep.dp.toUpperCase() == waypoints[0].toUpperCase());
-
-
                         
-                        store.set("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0], initFixForSid);
+                        initFixForSid = initFixJson
+                            ?.filter(airportRecord => airportRecord.airport == depParam)?.[0]
+                            ?.departures.filter(dep => waypoints[0].toUpperCase().startsWith(dep.dp.toUpperCase()))?.[0];
+                        
+                        store.set("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0], initFixForSid[0]);
                     }
 
-                    var memInitFixTable = $("<table />").addClass("table table-striped-columns table-bordered");
-                    memInitFixTable.append()
-                    $("#initFixContent").append(memInitFixTable);
-                    $("#initFixContainer").removeClass("d-none");
+                    if (!initFixForSid || !initFixForSid.initialWaypoints) {
+                        var memInitFixTable = $("<table />").addClass("table table-striped-columns table-bordered");
+                        if (initFixForSid.alt) {
+                            memInitFixTable.append($("<caption>").html(initFixForSid.alt));
+                        }
+
+                        var tHead = $("<thead />").append("<tr />");
+                        var tBody = $("<tbody />").append("<tr />");
+                        
+                        $.each(initFixForSid.initialWaypoints, function(i) {                            
+                            tHead.append($("<th scope='col' />")).html(initFixForSid.initialWaypoints[i].runway)
+                            tBody.append($("<td />")).html(initFixForSid.initialWaypoints[i].waypoint)
+                        });
+
+                        memInitFixTable.append(tHead).append(tBody);
+
+                        $("#initFixContent").append(memInitFixTable);
+                        $("#initFixContainer").removeClass("d-none");
+                    }
                     /*
                     <table class="table table-striped-columns table-bordered">
                         <thead>
