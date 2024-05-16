@@ -647,7 +647,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: OZCAR"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>OZCAR</strong>"
                         }
                     ]
                 },
@@ -659,7 +659,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: BGDDY"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>BGDDY</strong>"
                         }
                     ]
                 },
@@ -671,7 +671,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: GRCHN"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>GRCHN</strong>"
                         }
                     ]
                 },
@@ -683,7 +683,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: CHPPY"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>CHPPY</strong>"
                         }
                     ]
                 },
@@ -695,7 +695,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: BGDDY"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>BGDDY</strong>"
                         }
                     ]
                 },
@@ -707,7 +707,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: KNNGG"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>KNNGG</strong>"
                         }
                     ]
                 },
@@ -719,7 +719,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: MERRL"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>MERRL</strong>"
                         }
                     ]
                 },
@@ -731,7 +731,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: CERAH"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>CERAH</strong>"
                         }
                     ]
                 },
@@ -743,7 +743,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: KELLO"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>KELLO</strong>"
                         }
                     ]
                 },
@@ -755,7 +755,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: SAAMY"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>SAAMY</strong>"
                         }
                     ]
                 },
@@ -767,7 +767,7 @@ var initFixJson = JSON.parse(`[
                     "initialWaypoints": [                        
                         {
                             "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
-                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: RORRY"
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: <strong>RORRY</strong>"
                         }
                     ]
                 }
