@@ -633,6 +633,144 @@ var initFixJson = JSON.parse(`[
                         }
                     ]
                 }
-            ]        
+            ]
+    },
+    {
+        "airport":"KBNA",
+        "departures": 
+            [                
+                {
+                    "type": "RNAV",
+                    "dp": "CHADM",                    
+                    "trans":"SWAPP",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: OZCAR"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "DANLS",                    
+                    "trans":"SPKER",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: BGDDY"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "DRURY",                    
+                    "trans":"ACKEE or HAGIE or JALAR",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: GRCHN"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "EVVAN",                    
+                    "trans":"",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: CHPPY"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "FLAME",                    
+                    "trans":"GENDE",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: BGDDY"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "GDOGG",                    
+                    "trans":"FAPER",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: KNNGG"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "HGGRD",                    
+                    "trans":"TINGS",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: MERRL"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "KRSTA",                    
+                    "trans":"OLSIE",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: CERAH"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "PARDN",                    
+                    "trans":"HODJS or JJEFF or NAKIY",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: KELLO"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "TAZMO",                    
+                    "trans":"BURME",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: SAAMY"
+                        }
+                    ]
+                },
+                {
+                    "type": "RNAV",
+                    "dp": "TIPPN",
+                    "trans":"BRXTN",
+                    "alt":"",
+                    "initialWaypoints": [                        
+                        {
+                            "runway":"2C | 2L | 2R | 20C | 20L | 20R | 13 | 31",
+                            "waypoint":"ASSIGN HDG THEN RADAR VECTORS TO: RORRY"
+                        }
+                    ]
+                }
+            ]
     }
 ]`);

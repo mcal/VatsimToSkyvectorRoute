@@ -437,34 +437,6 @@
                         var centralHour = date.toLocaleString('en-US', {hour: '2-digit',   hour12: false, timeZone: 'America/Chicago' });                                    
                         if (centralHour <2 || centralHour > 6) { addAlert("INVALID SID - TIME RESTRICTED"); }
                     }
-                    
-                    
-                    /*
-                    <table class="table table-striped-columns table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">RNAV DP</th>
-                                <th scope="col">TRANS</th>
-                                <th scope="col">36L</th>
-                                <th scope="col">36C/R</th>
-                                <th scope="col">18L/C</th>
-                                <th scope="col">18R</th>
-                                <th scope="col">VECTOR TRANSITION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="initFixDp"></td>
-                                <td id="initFixTrans">TRANS</td>
-                                <td id="initFix36L">36L</td>
-                                <td id="initFix36CR">36C/R</td>
-                                <td id="initFix18LC">18L/C</td>
-                                <td id="initFix18R">18R</td>
-                                <td id="initFixVector">VECTOR TRANSITION</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    */
                 }
 
                 var initFixForSid = store.get("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0]);
