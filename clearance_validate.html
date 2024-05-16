@@ -483,21 +483,20 @@
                         memInitFixTable.append($("<caption>").html(initFixForSid.alt));
                     }
 
-                    var tHead = $("<thead />").append("<tr />");
-                    var tBody = $("<tbody />").append("<tr />");
-                    
+                    var tHead = $("<tr />");
+                    var tBody = $("<tr />");
+
                     $.each(initFixForSid.initialWaypoints, function(i) {                            
-                        tHead[0].firstChild.append($("<th scope='col' />")).html(initFixForSid.initialWaypoints[i].runway)
-                        tBody[0].firstChild.append($("<td />")).html(initFixForSid.initialWaypoints[i].waypoint)
+                        tHead.append($("<th scope='col' />").html(initFixForSid.initialWaypoints[i].runway));
+                        tBody.append($("<td />").html(initFixForSid.initialWaypoints[i].waypoint));
                     });
 
-                    memInitFixTable.append(tHead);
-                    memInitFixTable.append(tBody);
+                    memInitFixTable.append($("<thead />").append(tHead));
+                    memInitFixTable.append($("<tBody />").append(tBody));
 
                     $("#initFixContent").append(memInitFixTable);
                     $("#initFixContainer").removeClass("d-none");
                 }
-
             }
 
             function getAirports() {
