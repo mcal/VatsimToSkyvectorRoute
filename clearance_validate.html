@@ -487,8 +487,8 @@
                     var tBody = $("<tbody />").append("<tr />");
                     
                     $.each(initFixForSid.initialWaypoints, function(i) {                            
-                        tHead.firstChild.append($("<th scope='col' />")).html(initFixForSid.initialWaypoints[i].runway)
-                        tBody.firstChild.append($("<td />")).html(initFixForSid.initialWaypoints[i].waypoint)
+                        tHead[0].firstChild.append($("<th scope='col' />")).html(initFixForSid.initialWaypoints[i].runway)
+                        tBody[0].firstChild.append($("<td />")).html(initFixForSid.initialWaypoints[i].waypoint)
                     });
 
                     memInitFixTable.append(tHead);
