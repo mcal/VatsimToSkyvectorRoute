@@ -468,13 +468,13 @@
                 }
 
                 var initFixForSid = store.get("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0]);
-                if (!initFix || !initFix.initialWaypoints) {
+                if (!initFixForSid || !initFixForSid.initialWaypoints) {
                     
                     initFixForSid = initFixJson
                         ?.filter(airportRecord => airportRecord.airport == depParam)?.[0]
                         ?.departures.filter(dep => waypoints[0].toUpperCase().startsWith(dep.dp.toUpperCase()))?.[0];
                     
-                    store.set("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0], initFixForSid[0]);
+                    store.set("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0], initFixForSid);
                 }
 
                 if (initFixForSid && initFixForSid.initialWaypoints) {
