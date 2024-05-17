@@ -1,6 +1,14 @@
 var initFixJson = JSON.parse(`[
     {
         "airport":"KMEM",
+        "frequencies": 
+            { 
+                "APP":"125.8",
+                "TWR":"119.7",
+                "GND":"121.9",
+                "DEL":"125.2",
+                "ATIS":"127.75",
+            },
         "departures": 
             [                
                 {
