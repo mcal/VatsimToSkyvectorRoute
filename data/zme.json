@@ -1,6 +1,10 @@
-var initFixJson = JSON.parse(`[
+[
     {
         "airport":"KMEM",
+        "initialAltitude": {            
+            "JET": 5000,
+            "default": 3000
+        },
         "frequencies": 
             { 
                 "APP":"125.8",
@@ -645,6 +649,17 @@ var initFixJson = JSON.parse(`[
     },
     {
         "airport":"KBNA",
+        "initialAltitude": {                        
+            "default": 4000
+        },
+        "frequencies": 
+            { 
+                "APP":"119.35",
+                "TWR":"118.6",
+                "GND":"121.9",
+                "DEL":"126.05",
+                "ATIS":"135.1"
+            },
         "departures": 
             [                
                 {
@@ -780,5 +795,143 @@ var initFixJson = JSON.parse(`[
                     ]
                 }
             ]
+    },
+    {
+        "airport":"KLIT",
+        "initialAltitude": {                        
+            "default": 4000
+        },
+        "frequencies": 
+            { 
+                "APP":"119.5",
+                "TWR":"118.7",
+                "GND":"121.9",
+                "DEL":"118.95",
+                "ATIS":"125.65"
+            }
+    },
+    {
+        "airport":"KJAN",
+        "initialAltitude": {                        
+            "default": 4000
+        },
+        "frequencies": 
+            { 
+                "APP":"123.9",
+                "TWR":"120.9",
+                "GND":"121.7",
+                "DEL":"-",
+                "ATIS":"121.05"
+            }
+    },
+    {
+        "airport":"KHSV",
+        "initialAltitude": {                        
+            "default": 5000
+        },
+        "frequencies": 
+            { 
+                "APP":"125.6",
+                "TWR":"127.6",
+                "GND":"121.9",
+                "DEL":"120.35",
+                "ATIS":"121.25"
+            }
+    },
+    {
+        "airport":"KXNA",
+        "initialAltitude": {                        
+            "default": 5000
+        }
+    },
+    {
+        "airport":"KFSM",
+        "initialAltitude": {
+            "default": 4000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"2M8",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"7M4",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"M04",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"MO1",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"OLV",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"AWM",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"FCY",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"PMU",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"M41",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"FYE",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"NQA",
+        "initialAltitude": {
+            "default": 2000
+        }
+    },
+    {
+        "_comment": "MEM SAT",
+        "airport":"UTA",
+        "initialAltitude": {
+            "default": 2000
+        }
     }
-]`);
+]

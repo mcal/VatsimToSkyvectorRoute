@@ -110,14 +110,14 @@
                                         <div class="card-body">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 Aircraft</div>
-                                            <div class="d-flex justify-content-between">
-                                                <span id="make" class="d-flex justify-content-between"></span>
-                                                <span id="model" class="d-flex justify-content-between"></span> 
+                                            <div class="d-flex justify-content-start">
+                                                <span id="make"></span>
+                                                <span id="model"></span> 
                                             </div>
-                                            <div class="d-flex justify-content-between">
-                                                <span id="engineType" class="d-flex justify-content-between"></span>
-                                                <span id="engineCountLabel" class="d-flex justify-content-between">
-                                                    Engine Count: <span id="engineCount" class="d-flex justify-content-between"></span>
+                                            <div class="d-flex justify-content-start">
+                                                <span id="engineType"></span>
+                                                <span id="engineCountLabel">
+                                                    Engine Count: <span id="engineCount"></span>
                                                 </span>                                         
                                             </div>
                                         </div>
@@ -145,11 +145,12 @@
 
                             <div class="card shadow mb-4 d-none" id="initFixContainer">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Initial Fix</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Initial Departure Info</h6>
                                 </div>
-                                <div class="card-body">                                                                        
+                                <div class="card-body">
+                                    <div id="initAltitude">
+                                    </div>
                                     <div id="initFixContent">
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -262,6 +263,21 @@
           var routeParam = urlParams.get('route').toUpperCase(); 
           var squawk = urlParams.get('squawk'); 
           
+          var initFixJson;
+          $.getJSON('data/zme.json', function(initFixJson) {
+            // JSON result in `data` variable
+          });
+
+          var acJson;
+          $.getJSON('data/aircraftInfo.json', function(acJson) {
+            // JSON result in `data` variable
+          });
+
+          var callsignJson;
+          $.getJSON('data/callsignInfo.json', function(callsignJson) {
+            // JSON result in `data` variable
+          });
+
           var depProceduresLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
           var arrProceduresLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Arrivals&weatherSection=METAR&ATISSection=Real";
           
@@ -330,31 +346,6 @@
             $("#engineCount").text(aircraft.engineCount);
             if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}
 
-            var initAltitude = 5000;
-            switch(depParam.toUpperCase()) {
-                case "KMEM":
-                    if (!aircraft.engineType.toUpperCase() == "JET") {
-                        initAltitude = 4000 
-
-                    }
-                    else { 
-                        initAltitude = 5000;
-                    }
-                    break;
-                case "KBNA":
-                case "KLIT":
-                case "KJAN":
-                    initAltitude = 4000;
-                    break;
-                case "KXNA":
-                case "KHSV":
-                    initAltitude = 5000;
-                    break;
-                default:                    
-                    initAltitude = 5000;
-            }
-
-            $("#clearanceInitAlt").text(initAltitude);
             $("#engineCount").text(aircraft.engineCount);
 
             var departureAirport = store.get("airport" + depParam);
@@ -459,6 +450,15 @@
                     }
                 }
 
+                var airportRecord = store.get("airportRecord" + depParam);
+                if (!airportRecord || !airportRecord.airport) {
+                    
+                    airportRecord = initFixJson
+                        ?.filter(airportRecord => airportRecord.airport == depParam)?.[0];
+                    
+                    store.set("airportRecord" + depParam, airportRecord);
+                }
+
                 var initFixForSid = store.get("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0]);
                 if (!initFixForSid || !initFixForSid.initialWaypoints) {
                     
@@ -489,6 +489,11 @@
                     $("#initFixContent").append(memInitFixTable);
                     $("#initFixContainer").removeClass("d-none");
                 }
+
+                //Try init altitude by engine type, then default, then empty
+                var initAltitude = airportRecord?.initAltitude?.[engineType] ?? airportRecord?.initAltitude?.default ?? "XXXXX";               
+                $("#initAltitude").text(initAltitude);
+                $("#clearanceInitAlt").text(initAltitude);
             }
 
             function getAirports() {
