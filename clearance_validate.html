@@ -284,7 +284,11 @@
                 dataType: "json",
                 async: false,
                 url: 'data/aircraftInfo.json',
-                success: function(data){acJson = data}});
+                success: function(data){acJson = data},
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                }}
+            );
             $.ajax({
                 dataType: "json",
                 async: false,
