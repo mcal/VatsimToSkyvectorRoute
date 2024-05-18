@@ -427,6 +427,7 @@
                 validateAltitude();
             }
 
+            var flight;
             function getFlight(data)
             {
                 var onlineFlights = data.pilots;
@@ -434,7 +435,7 @@
                     return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
                 });
                 if (filteredFlight && filteredFlight.length > 0) {
-                    var flight = filteredFlight[0];
+                    flight = filteredFlight[0];
                     route = flight.flight_plan.route;
                     
                     //If any of the GET params weren't set, try to get from current data feed
