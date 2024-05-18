@@ -285,10 +285,11 @@
                 url: 'data/callsignInfo.json',
                 success: function(data){callsignJson=data}});
 
+            var aircraft;
             if (acTypeParam) {
                 getAircraft();            
             }
-            
+
             //Try to find DEP in live data            
             var route;
             var lastDataUpdate = store.get("lastDataUpdate");
@@ -370,7 +371,7 @@
           }
           
             function getAircraft() {
-                var aircraft = store.get("acInfo" + acTypeParam);
+                aircraft = store.get("acInfo" + acTypeParam);
                 if (!aircraft || !aircraft.make || !aircraft.model || !aircraft.engineType || !aircraft.engineCount) {
                     var filteredAircraft = acJson.filter(function(a) { 
                         return a.acType.toUpperCase() === acTypeParam.toUpperCase(); 
