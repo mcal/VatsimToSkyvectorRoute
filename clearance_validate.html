@@ -258,7 +258,7 @@
 
           var urlParams = new URLSearchParams(window.location.search);
           var callsignParam = urlParams.get('callsign').toUpperCase(); 
-          var acTypeParam = urlParams.get('acType').toUpperCase(); 
+          var acTypeParam = urlParams.get('acType').toUpperCase();           
           var depParam = urlParams.get('dep').toUpperCase(); 
           var arrParam = urlParams.get('arr').toUpperCase(); 
           var filedAlt = urlParams.get('filedAlt').toUpperCase(); 
@@ -285,6 +285,10 @@
                 url: 'data/callsignInfo.json',
                 success: function(data){callsignJson=data}});
 
+            if (acTypeParam) {
+                getAircraft();            
+            }
+            
             //Try to find DEP in live data            
             var route;
             var lastDataUpdate = store.get("lastDataUpdate");
@@ -365,21 +369,22 @@
             return (brng + 360) % 360;
           }
           
-            var aircraft = store.get("acInfo" + acTypeParam);
-            if (!aircraft || !aircraft.make || !aircraft.model || !aircraft.engineType || !aircraft.engineCount) {
-                var filteredAircraft = acJson.filter(function(a) { 
-                    return a.acType.toUpperCase() === acTypeParam.toUpperCase(); 
-                  });
-                aircraft = filteredAircraft[0];
-                store.set("acInfo" + acTypeParam, aircraft);
+            function getAircraft() {
+                var aircraft = store.get("acInfo" + acTypeParam);
+                if (!aircraft || !aircraft.make || !aircraft.model || !aircraft.engineType || !aircraft.engineCount) {
+                    var filteredAircraft = acJson.filter(function(a) { 
+                        return a.acType.toUpperCase() === acTypeParam.toUpperCase(); 
+                    });
+                    aircraft = filteredAircraft[0];
+                    store.set("acInfo" + acTypeParam, aircraft);
+                }
+                $("#make").text(aircraft.make);
+                $("#model").text(aircraft.model);
+                $("#engineType").text(aircraft.engineType);
+                $("#engineCount").text(aircraft.engineCount);
+                if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}
+                $("#engineCount").text(aircraft.engineCount);
             }
-            $("#make").text(aircraft.make);
-            $("#model").text(aircraft.model);
-            $("#engineType").text(aircraft.engineType);
-            $("#engineCount").text(aircraft.engineCount);
-            if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}
-
-            $("#engineCount").text(aircraft.engineCount);
 
             var departureAirport = store.get("airport" + depParam);
             var arrivalAirport = store.get("airport" + arrParam);
@@ -422,11 +427,15 @@
                     route = flight.flight_plan.route;
                     
                     //If any of the GET params weren't set, try to get from current data feed
-                    if (!acTypeParam) acTypeParam = flight.flight_plan.aircraft_short; 
+                    if (!acTypeParam) {
+                        acTypeParam = flight.flight_plan.aircraft_short;
+                        getAircraft();
+                    }; 
                     if (!depParam) depParam = flight.flight_plan.departure; 
                     if (!arrParam) flight.flight_plan.arrival; 
                     if (!filedAlt)flight.flight_plan.altitude;                     
                     if (!squawk) flight.flight_plan.assigned_transponder; 
+                    
 
                     $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
 
@@ -456,7 +465,7 @@
                                 ['SFOUR','STREE','NFIVE','EFOUR','NRONE','WFIVE','WFOUR','SONEI'].includes(item.toUpperCase());
                             }));
                     
-                    if (jetRoute && !(aircraft.engineType.toUpperCase() == "JET")) { addAlert("INVALID SID - JETS ONLY"); }
+                    if (jetRoute && !(aircraft?.engineType?.toUpperCase() == "JET")) { addAlert("INVALID SID - JETS ONLY"); }
 
                     if (timeRestricted) {
                         date = new Date(0);
@@ -506,7 +515,7 @@
                 }
 
                 //Try init altitude by engine type, then default, then empty
-                var initAltitude = airportRecord?.initialAltitude?.[aircraft.engineType.toUpperCase()] ?? airportRecord?.initialAltitude?.default ?? "XXXXX";               
+                var initAltitude = airportRecord?.initialAltitude?.[aircraft?.engineType?.toUpperCase()?? "XXX"] ?? airportRecord?.initialAltitude?.default ?? "XXXXX";               
                 $("#initAltitude").text(initAltitude);
                 $("#clearanceInitAlt").text(initAltitude);
             }
