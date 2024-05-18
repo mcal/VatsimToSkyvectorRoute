@@ -7,7 +7,7 @@ var initFixJson = JSON.parse(`[
                 "TWR":"119.7",
                 "GND":"121.9",
                 "DEL":"125.2",
-                "ATIS":"127.75",
+                "ATIS":"127.75"
             },
         "departures": 
             [                
