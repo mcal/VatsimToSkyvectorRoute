@@ -494,7 +494,7 @@
                 }
 
                 //Try init altitude by engine type, then default, then empty
-                var initAltitude = airportRecord?.initAltitude?.[engineType] ?? airportRecord?.initAltitude?.default ?? "XXXXX";               
+                var initAltitude = airportRecord?.initialAltitude?.[engineType] ?? airportRecord?.initialAltitude?.default ?? "XXXXX";               
                 $("#initAltitude").text(initAltitude);
                 $("#clearanceInitAlt").text(initAltitude);
             }
