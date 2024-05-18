@@ -268,18 +268,18 @@
                 dataType: "json",
                 async: false,
                 url: 'data/zme.json',
-                success: function(initFixJson) {}});
+                success: function(data) {initFixJson = data}});
             
             $.ajax({
                 dataType: "json",
                 async: false,
                 url: 'data/aircraftInfo.json',
-                success: function(acJson){}});
+                success: function(data){acJson = data}});
             $.ajax({
                 dataType: "json",
                 async: false,
                 url: 'data/callsignInfo.json',
-                success: function(callsignJson){}});                          
+                success: function(data){callsignJson=data}});                          
 
           var depProceduresLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
           var arrProceduresLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Arrivals&weatherSection=METAR&ATISSection=Real";
