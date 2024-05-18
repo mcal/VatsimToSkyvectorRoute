@@ -290,6 +290,14 @@
                 getAircraft();            
             }
 
+            //Set initial data from params
+            $("#callsign").text(callsignParam);
+            $("#routeFiled").text(routeParam);
+            $("#routeFiledAltitude").text(filedAlt);
+            $("#clearanceFiledAltitude").text(filedAlt);          
+            $("#clearanceSquawk").text(squawk);
+
+
             //Try to find DEP in live data            
             var route;
             var lastDataUpdate = store.get("lastDataUpdate");
@@ -332,14 +340,6 @@
                 callsignInfo = filteredCallsigns[0];
             store.set("callsign" + callsignParam.substring(0,3), callsignInfo);
           }
-          $("#callsign").text(callsignParam + " (" + callsignInfo?.telephony + ")");
-
-
-          $("#routeFiled").text(routeParam);
-          
-          $("#routeFiledAltitude").text(filedAlt);
-          $("#clearanceFiledAltitude").text(filedAlt);          
-          $("#clearanceSquawk").text(squawk);
 
             //var gcMapUrl = "http://www.gcmap.com/map?P=" + depParam + "-" + arrParam + "&MS=wls&MR=60&MX=540x540&PM=*";
             var gcMapUrl = "https://www.greatcirclemap.com/roadmap?label=icao&unit=mi&routes=" + depParam + "-" + arrParam;
