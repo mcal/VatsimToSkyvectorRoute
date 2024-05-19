@@ -264,12 +264,12 @@
           var alertsCount = 0;
 
           var urlParams = new URLSearchParams(window.location.search);
-          var callsignParam = urlParams?.get('callsign').toUpperCase(); 
-          var acTypeParam = urlParams?.get('acType').toUpperCase();           
-          var depParam = urlParams?.get('dep').toUpperCase(); 
-          var arrParam = urlParams?.get('arr').toUpperCase(); 
-          var filedAlt = urlParams?.get('filedAlt').toUpperCase(); 
-          var routeParam = urlParams?.get('route').toUpperCase() ?? ""; 
+          var callsignParam = urlParams?.get('callsign')?.toUpperCase(); 
+          var acTypeParam = urlParams?.get('acType')?.toUpperCase();           
+          var depParam = urlParams?.get('dep')?.toUpperCase(); 
+          var arrParam = urlParams?.get('arr')?.toUpperCase(); 
+          var filedAlt = urlParams?.get('filedAlt')?.toUpperCase(); 
+          var routeParam = urlParams?.get('route')?.toUpperCase() ?? ""; 
           var squawk = urlParams?.get('squawk'); 
           
           var initFixJson;
