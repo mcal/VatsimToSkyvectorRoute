@@ -450,6 +450,9 @@
                     if (!squawk)  squawk = flight.flight_plan.assigned_transponder ?? "1200";
 
                     $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
+                    $("#routeFiledAltitude").text(filedAlt);
+                    $("#clearanceFiledAltitude").text(filedAlt);
+                    $("#clearanceSquawk").text(squawk);
 
                     const waypoints = route.split(' ');
                     $("#sid_dep").text(waypoints[0] ?? "");
