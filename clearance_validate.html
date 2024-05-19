@@ -445,10 +445,9 @@
                         getAircraft();
                     }; 
                     if (!depParam) depParam = flight.flight_plan.departure; 
-                    if (!arrParam) flight.flight_plan.arrival; 
-                    if (!filedAlt)flight.flight_plan.altitude;                     
-                    if (!squawk) flight.flight_plan.assigned_transponder; 
-                    
+                    if (!arrParam) arrParam = flight.flight_plan.arrival; 
+                    if (!filedAlt) filedAlt = flight_plan.altitude;
+                    if (!squawk)  squawk = flight.flight_plan.assigned_transponder;
 
                     $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
 
