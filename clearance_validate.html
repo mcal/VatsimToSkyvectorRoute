@@ -446,8 +446,8 @@
                     }; 
                     if (!depParam) depParam = flight.flight_plan.departure; 
                     if (!arrParam) arrParam = flight.flight_plan.arrival; 
-                    if (!filedAlt) filedAlt = flight_plan.altitude;
-                    if (!squawk)  squawk = flight.flight_plan.assigned_transponder;
+                    if (!filedAlt) filedAlt = flight.flight_plan.altitude ?? "";
+                    if (!squawk)  squawk = flight.flight_plan.assigned_transponder ?? "1200";
 
                     $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
 
