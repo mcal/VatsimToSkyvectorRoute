@@ -335,14 +335,6 @@
             }
 
 
-          var depProceduresLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
-          var arrProceduresLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Arrivals&weatherSection=METAR&ATISSection=Real";
-          
-          $("#depProcedures").attr("href", depProceduresLink);
-          $("#arrProcedures").attr("href", arrProceduresLink);
-          $("#routeAnalyzerLink").attr("href", "https://www.flightaware.com/analysis/route.rvt?origin=" + depParam + "&destination=" + arrParam);
-
-
           var callsignInfo = store.get("callsign" + callsignParam.substring(0,3));
           if (!callsignInfo || !callsignInfo.telephony) {
             var filteredCallsigns = callsignJson.filter(function(a) { 
@@ -351,11 +343,25 @@
                 callsignInfo = filteredCallsigns[0];
             store.set("callsign" + callsignParam.substring(0,3), callsignInfo);
           }
+            
+            if (depParam && arrParam) {
+                var gcMapUrl = "https://www.greatcirclemap.com/roadmap?label=icao&unit=mi&routes=" + depParam + "-" + arrParam;
+                document.getElementById('gcMap').src = gcMapUrl;            
+                $("#gcMapContainer").append($("iframe").attr("src", gcMapUrl));
 
-            //var gcMapUrl = "http://www.gcmap.com/map?P=" + depParam + "-" + arrParam + "&MS=wls&MR=60&MX=540x540&PM=*";
-            var gcMapUrl = "https://www.greatcirclemap.com/roadmap?label=icao&unit=mi&routes=" + depParam + "-" + arrParam;
-            document.getElementById('gcMap').src = gcMapUrl;            
-            $("#gcMapContainer").append($("iframe").attr("src", gcMapUrl));
+                var depProceduresLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
+                var arrProceduresLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Arrivals&weatherSection=METAR&ATISSection=Real";
+                
+                $("#depProcedures").attr("href", depProceduresLink);
+                $("#arrProcedures").attr("href", arrProceduresLink);
+                $("#routeAnalyzerLink").attr("href", "https://www.flightaware.com/analysis/route.rvt?origin=" + depParam + "&destination=" + arrParam);
+            }
+            else
+            {
+                $("#depProcedures").class("d-none");
+                $("#arrProcedures").class("d-none");
+                $("#routeAnalyzerLink").class("d-none");
+            }            
 
           // Converts from degrees to radians.
           function toRadians(degrees) {
