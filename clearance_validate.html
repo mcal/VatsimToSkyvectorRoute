@@ -540,56 +540,63 @@
             }
 
             function getAirports() {
+                if (depParam) {
                 departureAirport = airportData.filter(function(a) { 
                     return a.icao?.toUpperCase() === depParam.toUpperCase(); 
                 })[0];
                 store.set("airport" + depParam, departureAirport);                
-                
-                arrivalAirport = airportData.filter(function(a) { 
-                    return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
-                })[0];
-                store.set("airport" + arrParam, arrivalAirport);
-                                
+                }
+
+                if (arrParam) {
+                    arrivalAirport = airportData.filter(function(a) { 
+                        return a.icao?.toUpperCase() === arrParam.toUpperCase(); 
+                    })[0];
+                    store.set("airport" + arrParam, arrivalAirport);
+                } 
                 validateAltitude();
             }
 
             function validateAltitude() {
-                $("#depAirportName").text(departureAirport.airport);
-                $("#arrAirportName").text(arrivalAirport.airport);
-                $("#clearanceArrival").text(arrivalAirport.airport);
+                $("#depAirportName").text(departureAirport?.airport ?? "Unknown");
+                $("#arrAirportName").text(arrivalAirport?.airport ?? "Unknown");
+                $("#clearanceArrival").text(arrivalAirport?.airport ?? "Unknown");
                 
-                var bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);
-                var filedAltNumber;
+                var bearing = "";
+                if (departureAirport && arrivalAirport) {
+                    bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);
+                    var filedAltNumber;
                 
-                if (filedAlt.startsWith("FL")) {
-                    filedAltNumber = filedAlt.match(/\d+/gi) * 100;
-                }
-                else {
-                    filedAltNumber = filedAlt;
-                }
-                var filedAltThousand = filedAltNumber / 1000;
-                var isOdd = filedAltThousand % 2;
-                
-                if (bearing >= 180 && bearing <= 359) {
-                //Even - South West
-                if (((filedAltThousand != '43') && (filedAltThousand != '47') && (filedAltThousand != '51')) &&
-                isOdd)
-                addAlert("Invalid Flight Level - Need Even (" + bearing.toFixed(1) +")");
-                } 
-                else
-                {
-                //Odd - North East
-                if (((filedAltThousand == 43) && (filedAltThousand == 47) && (filedAltThousand == 51)) ||
-                !isOdd)
-                addAlert("Invalid Flight Level - Need Odd (" + bearing.toFixed(1) +")");
-                }
+                    if (filedAlt?.startsWith("FL")) {
+                        filedAltNumber = filedAlt?.match(/\d+/gi) * 100;
+                    }
+                    else {
+                        filedAltNumber = filedAlt;
+                    }
+                    var filedAltThousand = filedAltNumber / 1000;
+                    var isOdd = filedAltThousand % 2;
+                    
+                    if (bearing >= 180 && bearing <= 359) {
+                        //Even - South West
+                        if (((filedAltThousand != '43') && (filedAltThousand != '47') && (filedAltThousand != '51')) &&
+                        isOdd)
+                        addAlert("Invalid Flight Level - Need Even (" + bearing.toFixed(1) +")");
+                    } 
+                    else
+                    {
+                        //Odd - North East
+                        if (((filedAltThousand == 43) && (filedAltThousand == 47) && (filedAltThousand == 51)) ||
+                        !isOdd)
+                        addAlert("Invalid Flight Level - Need Odd (" + bearing.toFixed(1) +")");
+                    }
 
-                if (alertsCount > 0) {                    
-                    $("#alertBorder").removeClass("border-left-info");
-                    $("#alertBorder").addClass("border-left-danger");
-                    $("#alertHeader").removeClass("text-info");
-                    $("#alertHeader").addClass("text-danger");
+                    if (alertsCount > 0) {                    
+                        $("#alertBorder").removeClass("border-left-info");
+                        $("#alertBorder").addClass("border-left-danger");
+                        $("#alertHeader").removeClass("text-info");
+                        $("#alertHeader").addClass("text-danger");
+                    }
                 }
+                
             }
 
             function addAlert(text)
