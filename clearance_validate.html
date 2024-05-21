@@ -397,7 +397,7 @@
                     store.set("acInfo" + acTypeParam, aircraft);
                 }
                 
-                $("#make").text(aircraft?.make ?? "Invalid");
+                $("#make").text(aircraft?.make ?? "Invalid (" + acTypeParam + ")");
                 $("#model").text(aircraft?.model ?? "Invalid");
                 $("#engineType").text(aircraft?.engineType ?? "Invalid");
                 $("#engineCount").text(aircraft?.engineCount ?? "Invalid");
