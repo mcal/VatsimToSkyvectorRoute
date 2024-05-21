@@ -933,5 +933,54 @@
         "initialAltitude": {
             "default": 2000
         }
+    },
+    {
+        "_comment": "CLASS D | Operating Hours: 0600-2100 | ASG SID | ",
+        "airport":"KASG",
+        "initialAltitude": {
+            "default": 4000
+        }
+    },
+    {
+        "_comment": "CLASS C | Operating Hours: M-F 0700-2000 - SAT Closed - SUN 1100-1600 | CBM SID | ",
+        "airport":"KCBM",
+        "initialAltitude": {
+            "default": 10000
+        }
+    },
+    {
+        "_comment": "CLASS D | Operating Hours: M-SAT 0500-2200 - SUN 0600-2200 | ",
+        "airport":"KCGI",
+        "initialAltitude": {
+            "default": 3000
+        }
+    },
+    {
+        "_comment": "CLASS D | Operating Hours: M-Th 0800-2400 - F 0800-1600 | Sat-Sun CLOSED | ",
+        "airport":"KEOD",
+        "initialAltitude": {
+            "default": 3000
+        }
+    },
+    {
+        "_comment": "CLASS D | Operating Hours: 0600-2200 | RZC SID",
+        "airport":"KFYV",
+        "initialAltitude": {
+            "default": 5000
+        }
+    },
+    {
+        "_comment": "CLASS D | Operating Hours: 0700-1900 |",
+        "airport":"KGLH",
+        "initialAltitude": {
+            "default": 3000
+        }
+    },
+    {
+        "_comment": "CLASS D | Operating Hours: 0600-2000 | RWY 36 CALM",
+        "airport":"KGTR",
+        "initialAltitude": {
+            "default": 7000
+        }
     }
 ]

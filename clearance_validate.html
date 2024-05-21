@@ -390,12 +390,12 @@
                     aircraft = filteredAircraft[0];
                     store.set("acInfo" + acTypeParam, aircraft);
                 }
-                $("#make").text(aircraft.make);
-                $("#model").text(aircraft.model);
-                $("#engineType").text(aircraft.engineType);
-                $("#engineCount").text(aircraft.engineCount);
-                if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}
-                $("#engineCount").text(aircraft.engineCount);
+                
+                $("#make").text(aircraft?.make ?? "Invalid");
+                $("#model").text(aircraft?.model ?? "Invalid");
+                $("#engineType").text(aircraft?.engineType ?? "Invalid");
+                $("#engineCount").text(aircraft?.engineCount ?? "Invalid");
+                if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}                
             }
 
             var departureAirport = store.get("airport" + depParam);
@@ -437,7 +437,11 @@
                 });
                 if (filteredFlight && filteredFlight.length > 0) {
                     flight = filteredFlight[0];
-                    route = flight.flight_plan.route;
+                    route = flight?.flight_plan.route;
+
+                    if (!flight) {
+                        return;
+                    }
                     
                     //If any of the GET params weren't set, try to get from current data feed
                     if (!acTypeParam) {
