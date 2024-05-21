@@ -443,11 +443,11 @@
                 });
                 if (filteredFlight && filteredFlight.length > 0) {
                     flight = filteredFlight[0];
-                    route = flight?.flight_plan.route;
-
+                    
                     if (!flight) {
-                        return;
+                        return;                    
                     }
+                    route = flight?.flight_plan?.route;
                     
                     //If any of the GET params weren't set, try to get from current data feed
                     if (!acTypeParam) {
