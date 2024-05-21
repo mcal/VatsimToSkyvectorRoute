@@ -401,7 +401,7 @@
                 $("#model").text(aircraft?.model ?? "Invalid");
                 $("#engineType").text(aircraft?.engineType ?? "Invalid");
                 $("#engineCount").text(aircraft?.engineCount ?? "Invalid");
-                if (aircraft.weight == "Heavy") { $("#heavyWeight").html(aircraft.weight);}                
+                if (aircraft?.weight == "Heavy") { $("#heavyWeight").html(aircraft?.weight);}                
             }
 
             var departureAirport = store.get("airport" + depParam);
