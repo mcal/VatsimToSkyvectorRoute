@@ -358,9 +358,9 @@
             }
             else
             {
-                $("#depProcedures").class("d-none");
-                $("#arrProcedures").class("d-none");
-                $("#routeAnalyzerLink").class("d-none");
+                $("#depProcedures").addClass("d-none");
+                $("#arrProcedures").addClass("d-none");
+                $("#routeAnalyzerLink").addClass("d-none");
             }            
 
           // Converts from degrees to radians.
@@ -478,7 +478,7 @@
             function CheckJetTimeRestictedSid(waypoints) {
                 $("#sid_dep").text(waypoints[0] ?? "");
                 $("#sid_trans").text(waypoints[1] ?? "Unknown");
-
+ 
                 if (depParam == "KMEM") {                                
                     var timeRestrictedJetSids = ['AUTMN', 'BINKY','GENEH','GMBUD','GRRIZ','HOTRD','NIKEI','OLEMS']; //JET - Time Restricted
                     var jetSids = ['BBKNG','CHLDR','CRSON','DUCKZ','GOETZ','JTEEE','PIEPE','SELPH','ZUMIT'].concat(timeRestrictedJetSids); //JET - All Day
