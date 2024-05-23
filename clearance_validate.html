@@ -597,9 +597,13 @@
                 $("#initAltitude").text(initAltitude);
                 $("#clearanceInitAlt").text(initAltitude);
 
-                $.each(airportRecord?.vfr?.clearance, function(i) {
-                    $("#nav-clearanceVfr").append($("<div />").text(i));
-                });
+                
+                if (airportRecord?.vfr?.clearance) {
+                    $("#nav-clearanceVfr").text("");
+                    $.each(airportRecord?.vfr?.clearance, function(i, text) {
+                        $("#nav-clearanceVfr").append($("<div />").text(text));
+                    });
+                }                
             }
 
             function getAirports() {
