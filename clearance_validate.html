@@ -453,7 +453,7 @@
                     return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
                 });
                 //Try looking in prefiles too
-                if (!filteredFlight) {
+                if (!filteredFlight || filteredFlight.length == 0) {
                     filteredFlight = data?.prefiles?.filter(function(t) { 
                     return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
                 });
