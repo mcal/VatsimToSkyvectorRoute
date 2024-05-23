@@ -1,6 +1,7 @@
 [
     {
         "airport":"KMEM",
+        "timezone":"America/Chicago",
         "initialAltitude": {            
             "JET": 5000,
             "default": 3000
@@ -20,6 +21,10 @@
                     "dp": "AUTMN",                    
                     "trans":"LUVEC",
                     "alt":"ELVIS.SFOUR for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [                        
                         {
                             "runway":"36L",
@@ -43,6 +48,9 @@
                     "type": "SID",
                     "dp": "ELVIS",                    
                     "trans":"SFOUR",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -54,7 +62,10 @@
                     "type": "RNAV",
                     "dp": "AZONE7",
                     "trans":"PITEW",
-                    "alt":"ELVIS.ETWOO for non-jet",
+                    "alt":"ELVIS.ETWOO for non-jet",                    
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -90,6 +101,9 @@
                     "dp": "BBKNG",
                     "trans":"KERMI",
                     "alt":"ELVIS.ETREE for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -125,6 +139,10 @@
                     "dp": "BINKY",
                     "trans":"BASBE",
                     "alt":"ELVIS.STREE for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -147,7 +165,10 @@
                 {
                     "type": "SID",
                     "dp": "ELVIS",
-                    "trans":"ETREE",
+                    "trans":"STREE",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -160,6 +181,9 @@
                     "dp": "CHLDR",
                     "trans":"ANSWA",
                     "alt":"ELVIS.WONEE for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -195,6 +219,9 @@
                     "dp": "CRSON",
                     "trans":"HUMMS",
                     "alt":"ELVIS.NFOUR for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -230,6 +257,9 @@
                     "dp": "DUCKZ",
                     "trans":"HELAR",
                     "alt":"ELVIS.WTWOO for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -265,6 +295,10 @@
                     "dp": "GENEH",
                     "trans":"NUYID",
                     "alt":"ELVIS.NFIVE for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -288,6 +322,9 @@
                     "type": "SID",
                     "dp": "ELVIS",
                     "trans":"NFIVE",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -300,6 +337,10 @@
                     "dp": "GMBUD",
                     "trans":"HJADET",
                     "alt":"ELVIS.EFOUR for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -322,7 +363,10 @@
                 {
                     "type": "SID",
                     "dp": "ELVIS",
-                    "trans":"EFOUT",
+                    "trans":"EFOUR",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -335,6 +379,9 @@
                     "dp": "GOETZ",
                     "trans":"DIYAB",
                     "alt":"ELVIS.EONEE for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -357,7 +404,7 @@
                 {
                     "type": "SID",
                     "dp": "ELVIS",
-                    "trans":"WTWOO",
+                    "trans":"EONEE",
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -370,6 +417,10 @@
                     "dp": "GRRIZ",
                     "trans":"MIEDZ",
                     "alt":"ELVIS.NRONE for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -393,6 +444,9 @@
                     "type": "SID",
                     "dp": "ELVIS",
                     "trans":"NRONE",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -405,6 +459,10 @@
                     "dp": "HOTRD",
                     "trans":"TOMKE",
                     "alt":"ELVIS.WFIVE for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -428,6 +486,9 @@
                     "type": "SID",
                     "dp": "ELVIS",
                     "trans":"WFIVE",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -439,7 +500,10 @@
                     "type": "RNAV",
                     "dp": "JTEEE",
                     "trans":"ODATE",
-                    "alt":"ELVIS.WTWOO for non-jet",
+                    "alt":"ELVIS.NTWOO for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -475,6 +539,10 @@
                     "dp": "NIKEI",
                     "trans":"INAYO",
                     "alt":"ELVIS.WFOUR for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -497,7 +565,10 @@
                 {
                     "type": "SID",
                     "dp": "ELVIS",
-                    "trans":"WTWOO",
+                    "trans":"WFOUR",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -510,6 +581,10 @@
                     "dp": "OLEMS",
                     "trans":"LEYIK",
                     "alt":"ELVIS.SONEI for non-jet",
+                    "restrictions": [
+                        "engine:JET",
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -533,6 +608,9 @@
                     "type": "SID",
                     "dp": "ELVIS",
                     "trans":"SONEI",
+                    "restrictions": [                        
+                        "time:0200-0600"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -545,6 +623,9 @@
                     "dp": "PIEPE",
                     "trans":"IBUFY",
                     "alt":"ELVIS.STWOO for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -567,7 +648,7 @@
                 {
                     "type": "SID",
                     "dp": "ELVIS",
-                    "trans":"WTWOO",
+                    "trans":"STWOO",
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -580,6 +661,9 @@
                     "dp": "SELPH",
                     "trans":"OHULO",
                     "alt":"ELVIS.NTREE for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -602,7 +686,7 @@
                 {
                     "type": "SID",
                     "dp": "ELVIS",
-                    "trans":"WTWOO",
+                    "trans":"NTREE",
                     "initialWaypoints": [
                         {
                             "runway":"VECTORS",
@@ -615,6 +699,9 @@
                     "dp": "ZUMIT",
                     "trans":"FOXOM",
                     "alt":"ELVIS.WTREE for non-jet",
+                    "restrictions": [
+                        "engine:JET"
+                    ],
                     "initialWaypoints": [
                         {
                             "runway":"36L",
@@ -649,6 +736,7 @@
     },
     {
         "airport":"KBNA",
+        "timezone":"America/Chicago",
         "initialAltitude": {                        
             "default": 4000
         },

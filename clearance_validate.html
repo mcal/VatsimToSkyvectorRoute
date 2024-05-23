@@ -479,26 +479,6 @@
                 $("#sid_dep").text(waypoints[0] ?? "");
                 $("#sid_trans").text(waypoints[1] ?? "Unknown");
  
-                if (depParam == "KMEM") {                                
-                    var timeRestrictedJetSids = ['AUTMN', 'BINKY','GENEH','GMBUD','GRRIZ','HOTRD','NIKEI','OLEMS']; //JET - Time Restricted
-                    var jetSids = ['BBKNG','CHLDR','CRSON','DUCKZ','GOETZ','JTEEE','PIEPE','SELPH','ZUMIT'].concat(timeRestrictedJetSids); //JET - All Day
-                    
-                    var jetRoute = jetSids.some(item => waypoints[0].startsWith(item));
-                    
-                    var timeRestricted = (timeRestrictedJetSids.some(item => waypoints[0].startsWith(item)) //If a time restricted jet sid
-                            || waypoints.some(item => { //Or has one of the ELVIS4 waypoints
-                                ['SFOUR','STREE','NFIVE','EFOUR','NRONE','WFIVE','WFOUR','SONEI'].includes(item.toUpperCase());
-                            }));
-                    
-                    if (jetRoute && !(aircraft?.engineType?.toUpperCase() == "JET")) { addAlert("INVALID SID - JETS ONLY"); }
-
-                    if (timeRestricted) {
-                        date = new Date(0);
-                        var centralHour = date.toLocaleString('en-US', {hour: '2-digit',   hour12: false, timeZone: 'America/Chicago' });                                    
-                        if (centralHour <2 || centralHour > 6) { addAlert("INVALID SID - TIME RESTRICTED"); }
-                    }
-                }
-
                 var airportRecord = store.get("airportRecord" + depParam);
                 if (!airportRecord || !airportRecord.airport) {
                     
@@ -508,16 +488,57 @@
                     store.set("airportRecord" + depParam, airportRecord);
                 }
 
-                var initFixForSid = store.get("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0]);
-                if (!initFixForSid || !initFixForSid.initialWaypoints) {
-                    
-                    initFixForSid = initFixJson
-                        ?.filter(airportRecord => airportRecord.airport == depParam)?.[0]
-                        ?.departures.filter(dep => waypoints[0].toUpperCase().startsWith(dep.dp.toUpperCase()))?.[0];
-                    
-                    store.set("initFix" + waypoints[0].toUpperCase() + "-" + waypoints[0], initFixForSid);
+                var initFixForSid;
+                if (depParam && waypoints[0]) {
+                    initFixForSid = store.get("initFix-" + depParam.toUpperCase() + "-" + waypoints[0]);
+                    if (!initFixForSid || !initFixForSid.initialWaypoints) {
+                        
+                        initFixForSid = initFixJson
+                            ?.filter(airportRecord => airportRecord.airport == depParam)?.[0]
+                            ?.departures.filter(dep => waypoints[0].toUpperCase().startsWith(dep.dp.toUpperCase()))?.[0];
+                        
+                        store.set("initFix-" + depParam.toUpperCase() + "-" + waypoints[0]);
+                    }
                 }
 
+                var timeRestriction = initFixJson
+                            ?.restrictions.filter(r => item.toUpperCase().startsWith("TIME:"))?.[0];
+                if (timeRestriction) {
+                    var startTimeHour = timeRestriction.substring(5, 7);
+                    var startTimeMinutes = timeRestriction.substring(7, 9);
+                    var endTimeHour = timeRestriction.substring(10, 12);
+                    var endTimeMinutes = timeRestriction.substring(12, 14);
+
+                    function convertTZ(date, tzString) {
+                        return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+                    }
+
+                    // Resulting value is regular Date() object
+                    const convertedDate = convertTZ(new Date(), airportRecord.timeZone ?? 'America/Chicago' );
+                    
+                    // to save 
+                    var startTime = convertTZ(new Date(), airportRecord.timeZone ?? 'America/Chicago' );
+                    startTime.setHours(startTimeHour);
+                    startTime.setMinutes(startTimeMinutes);
+                    
+                    var endTime = convertTZ(new Date(), airportRecord.timeZone ?? 'America/Chicago' );
+                    endTime.setHours(endTimeHour);
+                    endTime.setMinutes(endTimeMinutes);
+                    
+                    if ((convertedDate > endTime) || (convertedDate < startTime))
+                    {
+                        addAlert("INVALID SID - TIME RESTRICTED");
+                    }                    
+                }
+
+                var engineTypeRestriction = initFixJson
+                            ?.restrictions.filter(r => item.toUpperCase().startsWith("ENGINE:"))?.[0];
+                            var tabId = id.split(":").pop(); // => "Tabs1"
+
+                if (engineTypeRestriction && engineTypeRestriction.split(":").pop().toUpperCase() != aircraft?.engineType?.toUpperCase()) {
+                    addAlert("INVALID SID - " + engineTypeRestriction.split(":").pop().toUpperCase() + " ONLY");
+                }
+                
                 if (initFixForSid && initFixForSid.initialWaypoints) {
                     var memInitFixTable = $("<table />").addClass("table table-striped-columns table-bordered");
                     if (initFixForSid.alt) {
