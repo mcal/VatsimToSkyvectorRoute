@@ -74,13 +74,16 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Departure</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="depAirportName"></span></div>
-                                                    <div><a id="depProcedures" class="text-info">Departure Procedures</a></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="depAirportName"></span></div>                                                    
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-plane-departure fa-2x text-gray-300"></i>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <div><a id="depTaxiChart" class="text-info">Taxi Chart</a></div>
+                                            <div><a id="depProcedures" class="text-info">Departure Procedures</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -93,12 +96,16 @@
                                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                         Arrival</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="arrAirportName"></span></div>
-                                                    <div><a id="arrProcedures" class="text-info">Arrival Procedures</a></div>
+                                                    
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-plane-arrival fa-2x text-gray-300"></i>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <div><a id="arrTaxiChart" class="text-info">Taxi Chart</a></div>
+                                            <div><a id="arrProcedures" class="text-info">Arrival Procedures</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -350,9 +357,14 @@
 
                 var depProceduresLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
                 var arrProceduresLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Proc&chartCategory=ARR&informationSection=General&procedureSection=Arrivals&weatherSection=METAR&ATISSection=Real";
+
+                var deptaxiLink = "https://charts.navigraph.com/airport/" + depParam + "?section=Charts&chartCategory=APT&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
+                var arrtaxiLink = "https://charts.navigraph.com/airport/" + arrParam + "?section=Charts&chartCategory=APT&informationSection=General&procedureSection=Departures&weatherSection=METAR&ATISSection=Real";
                 
                 $("#depProcedures").attr("href", depProceduresLink);
                 $("#arrProcedures").attr("href", arrProceduresLink);
+                $("#depTaxiChart").attr("href", deptaxiLink);
+                $("#arrTaxiChart").attr("href", arrtaxiLink);
                 $("#routeAnalyzerLink").attr("href", "https://www.flightaware.com/analysis/route.rvt?origin=" + depParam + "&destination=" + arrParam);
             }
             else
