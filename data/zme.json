@@ -1,6 +1,7 @@
 [
     {
         "airport":"KMEM",
+        "forceResetIdentifier":"A",
         "timezone":"America/Chicago",
         "initialAltitude": {            
             "JET": 5000,

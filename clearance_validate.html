@@ -268,6 +268,11 @@
     <script>
         $(document).ready(function () {
 
+          //Update when these files change so cache can be reset
+          var zmeIdentifier = "202405230533P";
+          var acInfoIdentifier = "202405230533P";
+          var callsignIdentifier = "202405230533P";
+
           var alertsCount = 0;
 
           var urlParams = new URLSearchParams(window.location.search);
@@ -285,13 +290,17 @@
             $.ajax({
                 dataType: "json",
                 async: false,
-                url: 'data/zme.json',
-                success: function(data) {initFixJson = data}});
-            
+                url: 'data/zme.json?id=' + zmeIdentifier,
+                success: function(data) {initFixJson = data;
+                    //If the idenifier isn't the value here, force a reset to make sure we clear out any local storage
+                    if (initFixJson[0].forceResetIdentifier != "A") {
+                        store.clear();
+                    }
+                }});            
             $.ajax({
                 dataType: "json",
                 async: false,
-                url: 'data/aircraftInfo.json',
+                url: 'data/aircraftInfo.json?id=' + acInfoIdentifier,
                 success: function(data){acJson = data},
                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
                     alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -300,7 +309,7 @@
             $.ajax({
                 dataType: "json",
                 async: false,
-                url: 'data/callsignInfo.json',
+                url: 'data/callsignInfo.json?id=' + callsignIdentifier,
                 success: function(data){callsignJson=data}});
 
             var aircraft;
