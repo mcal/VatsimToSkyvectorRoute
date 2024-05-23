@@ -6,6 +6,16 @@
             "JET": 5000,
             "default": 3000
         },
+        "vfr": {
+            "patternAltitude":1900,
+            "classB": 2500,
+            "clearance": [
+                "Cleared into/out of/through Memphis Class Bravo Airspace",
+                "Maintain VFR at or below 2500",
+                "Departure Frequency [XXX.XXX]",
+                "Squawk [XXXX]"
+            ]
+        },
         "frequencies": 
             { 
                 "APP":"125.8",

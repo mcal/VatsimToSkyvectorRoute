@@ -132,6 +132,10 @@
                                                 <span id="routeFiledAltitude"></span> 
                                             </div>
                                             <div class="d-flex justify-content-between">
+                                                <span>Squawk</span>
+                                                <span id="squawkCode"></span> 
+                                            </div>
+                                            <div class="d-flex justify-content-between">
                                                 <span>Route</span>
                                                 <div class="text-warning" id="routeFiled"></div>
                                             </div>
@@ -165,48 +169,40 @@
                                 </div>
                                 <div class="card-body">
                                     
-                                    <div class="d-flex justify-content-between">
-                                        <span id="make" class="d-flex justify-content-between"></span>
-                                        <span id="model" class="d-flex justify-content-between"></span> 
-                                    </div>
-                                    <div>
-                                        <div>Cleared to <strong><span id="clearanceArrival"></span></strong></div>
-                                        <div><strong><span id="sid_dep">[SID DEP]</span> Departure, <span id="useTransition"><span id="sid_trans">[TRANS]</span> transition</span>, then as filed.</strong></div>
-                                        <div>Climb and maintain <strong><span id="clearanceInitAlt"></span></strong>. Expect <strong><span id="clearanceFiledAltitude"></span></strong> 1-0 minutes after</strong></div>
-                                        <div>Departure Frequency 125.80</div>
-                                        <div>Squawk <strong><span id="clearanceSquawk"></span></strong></div>
-                                    </div>
-                                    <hr>
-                                    <div id="vfrClearancePhraseology">                                        
-                                        <div>Cleared into Memphis Class Bravo Airspace</div>                                        
-                                        <div>Maintain VFR at or below 2,500.</div>
-                                        <div>Departure Frequency 125.80</div>
-                                        <div>Squawk <strong><span id="clearanceSquawk"></span></strong></div>
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <div>Readback Correct. ATIS Information [CODE] Current. Altimeter <span id="altimeter">[ALT]</span>.</div>
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Working Ground</div>
-                                                <div>Push and Start at own discretion OR Call for push</div>
-                                                <div>Expect Runway [RUNWAY]</div>
-                                                <div>Call for taxi</div>
-                                            </div>
-                                            <div>
-                                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Working Delivery</div>
-                                                <div>Contact Ground 121.9 for push</div>
-                                                <div>Expect Runway [RUNWAY]</div>                                                
-                                            </div>
-                                        </div>                                        
-                                    </div>
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                          <button class="nav-link active" id="nav-clearanceIfr-tab" data-bs-toggle="tab" data-bs-target="#nav-clearanceIfr" type="button" role="tab" aria-controls="nav-clearanceIfr" aria-selected="true">IFR Clearance</button>
+                                          <button class="nav-link" id="nav-clearanceVfr-tab" data-bs-toggle="tab" data-bs-target="#nav-clearanceVfr" type="button" role="tab" aria-controls="nav-clearanceVfr" aria-selected="false">VFR Clearance</button>
+                                          <button class="nav-link" id="nav-clearanceReadback-tab" data-bs-toggle="tab" data-bs-target="#nav-clearanceReadback" type="button" role="tab" aria-controls="nav-clearanceReadback" aria-selected="false">Readback</button>                                          
+                                          <button class="nav-link" id="nav-takeoff-tab" data-bs-toggle="tab" data-bs-target="#nav-takeoff" type="button" role="tab" aria-controls="nav-takeoff" aria-selected="false">Takeeoff</button>                                          
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-clearanceIfr" role="tabpanel" aria-labelledby="nav-clearanceIfr-tab" tabindex="0">
+                                            <div>Cleared to <strong><span id="clearanceArrival"></span></strong></div>
+                                            <div><strong><span id="sid_dep">[SID DEP]</span> Departure, <span id="useTransition"><span id="sid_trans">[TRANS]</span> transition</span>, then as filed.</strong></div>
+                                            <div>Climb and maintain <strong><span id="clearanceInitAlt"></span></strong>. Expect <strong><span id="clearanceFiledAltitude"></span></strong> 10 minutes after</strong></div>
+                                            <div>Departure Frequency [XXX.XX]</div>
+                                            <div>Squawk <strong><span class="clearanceSquawk">XXXX</span></strong></div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-clearanceVfr" role="tabpanel" aria-labelledby="nav-clearanceVfr-tab" tabindex="0">
+                                            ...
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-clearanceReadback" role="tabpanel" aria-labelledby="nav-clearanceReadback-tab" tabindex="0">
+                                            <div>Readback Correct. ATIS Information [CODE] Current. Altimeter <span id="altimeter">[ALT]</span>.</div>                                            
+                                            <div>[Push and Start at own discretion. Call when ready for taxi] OR [Call for push]</div>
+                                            <div>Expect Runway [RUNWAY]</div>                                            
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-takeoff" role="tabpanel" aria-labelledby="nav-takeoff-tab" tabindex="0">
+                                            ...
+                                        </div>
+                                    </div>                                   
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="col-lg-6">
-                            <!-- Basic Card Example -->
+                        <div class="col-lg-6">                            
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Map</h6>
@@ -307,7 +303,7 @@
             $("#routeFiledAltitude").text(filedAlt);
             $("#clearanceFiledAltitude").text(filedAlt);          
             $("#clearanceSquawk").text(squawk);
-
+            $(".clearanceSquawk").text(squawk);
 
             //Try to find DEP in live data            
             var route;
@@ -462,7 +458,8 @@
                     $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
                     $("#routeFiledAltitude").text(filedAlt);
                     $("#clearanceFiledAltitude").text(filedAlt);
-                    $("#clearanceSquawk").text(squawk);
+                    $("#clearanceSquawk").text(squawk);                    
+                    $(".clearanceSquawk").text(squawk);
 
                     const waypoints = route.split(' ');
                     $("#sid_dep").text(waypoints[0] ?? "");
@@ -502,7 +499,7 @@
                 }
 
                 var timeRestriction = initFixForSid
-                            ?.restrictions.filter(r => item.toUpperCase().startsWith("TIME:"))?.[0];
+                            ?.restrictions.filter(r => r.toUpperCase().startsWith("TIME:"))?.[0];
                 if (timeRestriction) {
                     var startTimeHour = timeRestriction.substring(5, 7);
                     var startTimeMinutes = timeRestriction.substring(7, 9);
@@ -532,8 +529,8 @@
                 }
 
                 var engineTypeRestriction = initFixJson
-                            ?.restrictions.filter(r => item.toUpperCase().startsWith("ENGINE:"))?.[0];
-                            var tabId = id.split(":").pop(); // => "Tabs1"
+                            ?.restrictions.filter(r => r.toUpperCase().startsWith("ENGINE:"))?.[0];
+                            var tabId = id.split(":").pop();
 
                 if (engineTypeRestriction && engineTypeRestriction.split(":").pop().toUpperCase() != aircraft?.engineType?.toUpperCase()) {
                     addAlert("INVALID SID - " + engineTypeRestriction.split(":").pop().toUpperCase() + " ONLY");
@@ -564,6 +561,10 @@
                 var initAltitude = airportRecord?.initialAltitude?.[aircraft?.engineType?.toUpperCase()?? "XXX"] ?? airportRecord?.initialAltitude?.default ?? "XXXXX";               
                 $("#initAltitude").text(initAltitude);
                 $("#clearanceInitAlt").text(initAltitude);
+
+                $.each(airportRecord?.vfr?.clearance, function(i) {
+                    $("#nav-clearanceVfr").append($("<div />").text(i));
+                });
             }
 
             function getAirports() {
@@ -589,7 +590,8 @@
                 $("#clearanceArrival").text(arrivalAirport?.airport ?? "Unknown");
                 
                 var bearing = "";
-                if (departureAirport && arrivalAirport) {
+                //If not VFR, calculate direction of flight
+                if (!filedAlt.toUpperCase().startsWith("V") && departureAirport && arrivalAirport) {
                     bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);
                     var filedAltNumber;
                 
@@ -615,15 +617,7 @@
                         !isOdd)
                         addAlert("Invalid Flight Level - Need Odd (" + bearing.toFixed(1) +")");
                     }
-
-                    if (alertsCount > 0) {                    
-                        $("#alertBorder").removeClass("border-left-info");
-                        $("#alertBorder").addClass("border-left-danger");
-                        $("#alertHeader").removeClass("text-info");
-                        $("#alertHeader").addClass("text-danger");
-                    }
                 }
-                
             }
 
             function addAlert(text)
@@ -634,8 +628,17 @@
                 }                
                 var newAlert = $("<div />").addClass("alert alert-danger").attr("role", "alert").text(text);
                 $("#alerts").append(newAlert);
-                $("#alertContainer").removeClass("d-none");
-                alertsCount++;   
+                
+                alertsCount++;
+
+                //On the first alert, make it visible
+                if (alertsCount == 1) {                    
+                    $("#alertBorder").removeClass("border-left-info");
+                    $("#alertBorder").addClass("border-left-danger");
+                    $("#alertHeader").removeClass("text-info");
+                    $("#alertHeader").addClass("text-danger");
+                    $("#alertContainer").removeClass("d-none");
+                }
             }
         });
 
