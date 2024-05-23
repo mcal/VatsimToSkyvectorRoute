@@ -611,7 +611,7 @@
                 
                 var bearing = "";
                 //If not VFR, calculate direction of flight
-                if (!filedAlt.toUpperCase().startsWith("V") && departureAirport && arrivalAirport) {
+                if (!filedAlt?.toUpperCase().startsWith("V") && departureAirport && arrivalAirport) {
                     bearing = getBearing(departureAirport.latitude, departureAirport.longitude, arrivalAirport.latitude, arrivalAirport.longitude);
                     var filedAltNumber;
                 
