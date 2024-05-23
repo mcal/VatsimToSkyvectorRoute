@@ -452,6 +452,12 @@
                 var filteredFlight = onlineFlights.filter(function(t) { 
                     return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
                 });
+                //Try looking in prefiles too
+                if (!filteredFlight) {
+                    filteredFlight = data?.prefiles?.filter(function(t) { 
+                    return t.callsign.toUpperCase() === callsignParam.toUpperCase(); 
+                });
+                }
                 if (filteredFlight && filteredFlight.length > 0) {
                     flight = filteredFlight[0];
                     
@@ -549,8 +555,8 @@
                 }
                 
                 //Is this a DP with a transition?
-                if (initFixForSid?.trans && initFixForSid?.trans?.includes(waypoints?.[1])) {
-                    $("#sid_trans").text(waypoints[1] ?? "Unknown");
+                if (initFixForSid?.trans) {
+                    $("#sid_trans").text(initFixForSid?.trans);
                 }
                 else {
                     $("#useTransition").addClass("d-none");
