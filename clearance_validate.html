@@ -135,7 +135,7 @@
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <span>Squawk</span>
-                                                <span id="squawkCode"></span> 
+                                                <span class="squawkCode"></span> 
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <span>Route</span>
@@ -185,7 +185,7 @@
                                             <div><strong><span id="sid_dep">[SID DEP]</span> Departure, <span id="useTransition"><span id="sid_trans">[TRANS]</span> transition</span>, then as filed.</strong></div>
                                             <div>Climb and maintain <strong><span id="clearanceInitAlt"></span></strong>. Expect <strong><span id="clearanceFiledAltitude"></span></strong> 10 minutes after</strong></div>
                                             <div>Departure Frequency [XXX.XX]</div>
-                                            <div>Squawk <strong><span class="clearanceSquawk">XXXX</span></strong></div>
+                                            <div>Squawk <strong><span class="squawkCode">XXXX</span></strong></div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-clearanceVfr" role="tabpanel" aria-labelledby="nav-clearanceVfr-tab" tabindex="0">
                                             ...
@@ -305,9 +305,8 @@
             $("#callsign").text(callsignParam);
             $("#routeFiled").text(routeParam);
             $("#routeFiledAltitude").text(filedAlt);
-            $("#clearanceFiledAltitude").text(filedAlt);          
-            $("#clearanceSquawk").text(squawk);
-            $(".clearanceSquawk").text(squawk);
+            $("#clearanceFiledAltitude").text(filedAlt);                      
+            $(".squawkCode").text(squawk);
 
             //Try to find DEP in live data            
             var route;
@@ -461,14 +460,12 @@
 
                     $("#routeFiled").text(route).removeClass("text-warning").addClass("text-success");
                     $("#routeFiledAltitude").text(filedAlt);
-                    $("#clearanceFiledAltitude").text(filedAlt);
-                    $("#clearanceSquawk").text(squawk);                    
-                    $(".clearanceSquawk").text(squawk);
+                    $("#clearanceFiledAltitude").text(filedAlt);                    
+                    $(".squawkCode").text(squawk);
 
                     const waypoints = route.split(' ');
                     $("#sid_dep").text(waypoints[0] ?? "");
-                    $("#sid_trans").text(waypoints[1] ?? "Unknown");
-
+                    //$("#sid_trans").text(waypoints[1] ?? "Unknown");                    
                     CheckJetTimeRestictedSid(waypoints);
                 }
                 else {
@@ -539,6 +536,14 @@
                     addAlert("INVALID SID - " + engineTypeRestriction.split(":").pop().toUpperCase() + " ONLY");
                 }
                 
+                //Is this a DP with a transition?
+                if (initFixForSid?.trans && initFixForSid?.trans?.includes(waypoints?.[1])) {
+                    $("#sid_trans").text(waypoints[1] ?? "Unknown");
+                }
+                else {
+                    $("#useTransition").addClass("d-none");
+                }
+
                 if (initFixForSid && initFixForSid.initialWaypoints) {
                     var memInitFixTable = $("<table />").addClass("table table-striped-columns table-bordered");
                     if (initFixForSid.alt) {
