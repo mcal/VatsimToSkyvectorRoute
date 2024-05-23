@@ -501,7 +501,7 @@
                     }
                 }
 
-                var timeRestriction = initFixJson
+                var timeRestriction = initFixForSid
                             ?.restrictions.filter(r => item.toUpperCase().startsWith("TIME:"))?.[0];
                 if (timeRestriction) {
                     var startTimeHour = timeRestriction.substring(5, 7);
