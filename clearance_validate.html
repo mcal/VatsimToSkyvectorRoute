@@ -528,9 +528,8 @@
                     }                    
                 }
 
-                var engineTypeRestriction = initFixJson
-                            ?.restrictions.filter(r => r.toUpperCase().startsWith("ENGINE:"))?.[0];
-                            var tabId = id.split(":").pop();
+                var engineTypeRestriction = initFixForSid
+                            ?.restrictions.filter(r => r.toUpperCase().startsWith("ENGINE:"))?.[0];                            
 
                 if (engineTypeRestriction && engineTypeRestriction.split(":").pop().toUpperCase() != aircraft?.engineType?.toUpperCase()) {
                     addAlert("INVALID SID - " + engineTypeRestriction.split(":").pop().toUpperCase() + " ONLY");
